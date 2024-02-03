@@ -4,6 +4,15 @@ import "./experience.css";
 
 function Experience() {
 
+    let TimelineSection = (()=>{
+        return (
+            <>
+                <div className="bullet"></div>
+                <div className="timeline_progress_bar"></div>
+            </>
+        );
+    });
+
     let TimeLineHistory = ((props)=>{
         return (
             <div className="timeline_history_bar">
@@ -16,7 +25,12 @@ function Experience() {
     let TimeLine = (()=>{
         return (
             <div className="timeline_container">
-                <div className="timeline"></div>
+                <div className="timeline">
+                   <TimelineSection />
+                   <TimelineSection />
+                   <TimelineSection />
+                   <div className="bullet"></div> 
+                </div>
                 <div className="timeline_history">
                     <TimeLineHistory time="2020" />
                 </div>

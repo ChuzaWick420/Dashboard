@@ -3,3 +3,43 @@
     padding-inline: var(--internal-padding);
 }
 
+.experience_container h1 {
+    font-size: var(--large-heading);
+}
+
+.timeline_container {
+    display: grid;
+    grid-template-columns: var(--bullet-size) auto;
+}
+
+.bullet {
+    background-color: var(--primary);
+    width: var(--bullet-size);
+    aspect-ratio: 1;
+    border-radius: var(--border);
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline_progress_bar {
+    background-color: var(--text-color);
+    width: var(--bar-size);
+    height: 10px;
+}
+
+.timeline_history_bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(var(--internal-padding) / 2);
+}
+
+.timeline_extension_bar {
+    width: calc(var(--major-content-spacing) * 2);
+    height: var(--bar-size);
+    background-color: var(--text-color);
+}

@@ -8,13 +8,15 @@
     --internal-padding: 1.5rem;
     --bullet-size: 1.5rem;
     --body-text: 1rem;
+    --major-content-spacing: 3rem;
+    --large-heading: 2rem;
+    --bar-size: 0.125rem;
     
     /*colors*/
     --background-color: #0f0f0f;
     --text-color: white;
     --primary: #14b3c5;
     --hover: #161616;
-    --major-content-spacing: 3rem;
 }
 
 body, #root {
