@@ -13,3 +13,25 @@
     border-radius: 50%;
     overflow: hidden;
 }
+
+.nav_button {
+    display: grid;
+    grid-template-columns: var(--bullet-size) auto;
+    padding-left: var(--internal-padding);
+    padding-top: calc(var(--internal-padding) / 2);
+    padding-bottom: calc(var(--internal-padding) / 2);
+}
+
+.nav_button:hover {
+    background-color: var(--hover);
+}
+
+.nav_button > h1 {
+    font-size: var(--body-text);
+    padding-left: calc(var(--internal-padding) / 2);
+}
+
+.nav_button > img {
+    width: var(--bullet-size);
+    aspect-ratio: 1;
+}

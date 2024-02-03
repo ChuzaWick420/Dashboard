@@ -4,18 +4,30 @@
     --img-size-mid: 9.375rem;
     --img-size-large: 15.625rem;
     --vertical-separator: 12.5rem;
-    --border: 20px;
+    --border: 1.25rem;
+    --internal-padding: 1.5rem;
+    --bullet-size: 1.5rem;
+    --body-text: 1rem;
     
     /*colors*/
     --background-color: #0f0f0f;
     --text-color: white;
+    --primary: #14b3c5;
+    --hover: #161616;
 }
 
 body, #root {
     margin: 0;
     height: 100vh;
     width: 100vw;
+    color: var(--text-color);
     background-color: var(--background-color);
+}
+
+/* gets rid of the default margins and padding */
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
 }
 
 #root {
