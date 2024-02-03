@@ -1,5 +1,15 @@
 .layout_container {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-color);
+}
+
+.img_mid_container, .img_mid_container > img {
+    width: var(--img-size-mid);
+    aspect-ratio: 1;
+}
+
+.img_mid_container {
+    margin: calc((100% - var(--img-size-mid)) / 2);
+    border-radius: 50%;
+    overflow: hidden;
 }
