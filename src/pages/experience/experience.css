@@ -1,0 +1,5 @@
+.experience_container{
+    padding-block: var(--major-content-spacing);
+    padding-inline: var(--internal-padding);
+}
+
