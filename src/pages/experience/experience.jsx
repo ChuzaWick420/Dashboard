@@ -22,6 +22,22 @@ function Experience() {
         );
     });
 
+    let TimeLineHistroyCard = (()=>{
+        return (
+            <div className="history_card_container">
+                <TimeLineHistory time="2020" />
+                <div className="history_card">
+                    <h3>Full Stack Dev</h3>
+                    <p>
+                        I was able to improve performance of a certain product, 
+                        I was able to learn a lot of stuff and was able to help 
+                        my fellows
+                    </p>
+                </div>
+            </div>
+        );
+    });
+
     let TimeLine = (()=>{
         return (
             <div className="timeline_container">
@@ -32,7 +48,7 @@ function Experience() {
                    <div className="bullet"></div> 
                 </div>
                 <div className="timeline_history">
-                    <TimeLineHistory time="2020" />
+                    <TimeLineHistroyCard />
                 </div>
             </div>
         );

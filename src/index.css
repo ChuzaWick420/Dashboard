@@ -10,12 +10,15 @@
     --body-text: 1rem;
     --major-content-spacing: 3rem;
     --large-heading: 2rem;
+    --small-text: 0.75rem;
     --bar-size: 0.125rem;
+    --sub-heading: 1.25rem;
     
     /*colors*/
     --background-color: #0f0f0f;
     --text-color: white;
     --primary: #14b3c5;
+    --secondary: #282828;
     --hover: #161616;
 }
 

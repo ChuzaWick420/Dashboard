@@ -10,6 +10,7 @@
 .timeline_container {
     display: grid;
     grid-template-columns: var(--bullet-size) auto;
+    margin-top: var(--internal-padding);
 }
 
 .bullet {
@@ -35,6 +36,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: var(--bullet-size);
     gap: calc(var(--internal-padding) / 2);
 }
 
@@ -42,4 +44,19 @@
     width: calc(var(--major-content-spacing) * 2);
     height: var(--bar-size);
     background-color: var(--text-color);
+}
+
+.timeline_history_time {
+    font-size: var(--small-text);
+}
+
+.history_card {
+    border-radius: var(--border);
+    height: 50px;
+    width: 100%;
+    background-color: var(--secondary);
+}
+
+.history_card > h3 {
+    font-size: var(--sub-heading);
 }
