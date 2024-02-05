@@ -1,8 +1,14 @@
 .layout_container {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: var(--vertical-separator) auto;
+}
+
+.side_panel {
     display: flex;
     flex-direction: column;
 }
-
 .img_mid_container, .img_mid_container > img {
     width: var(--img-size-mid);
     aspect-ratio: 1;
@@ -34,4 +40,48 @@
 .nav_button > img {
     width: var(--bullet-size);
     aspect-ratio: 1;
+}
+
+.dev_container {
+    background-color: red;
+}
+
+@media (max-width: calc((425px + 768px) / 2)) {
+    .layout_container {
+        grid-template-rows: calc(var(--vertical-separator) / 4) auto;
+        grid-template-columns: auto;
+        overflow: hidden;
+    }
+
+    .side_panel {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+    }
+
+    .side_panel > h1 {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    .img_mid_container, .burger {
+        --margin: calc(var(--vertical-separator) / (4 * 2) - var(--bullet-size));
+        width: calc(var(--vertical-separator) / 4 - 2 * var(--margin));
+        height: calc(var(--vertical-separator) / 4 - 2 * var(--margin));
+        margin: var(--margin);
+    }
+
+    .img_mid_container > img {
+        width: 100%;
+    }
+
+    .burger {
+        background-color: var(--secondary);
+        border-radius: var(--border);
+    }
+
+}
+
+@media (max-width: 768px) {
+
 }

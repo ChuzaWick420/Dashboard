@@ -3,7 +3,7 @@
     /*Sizing*/
     --img-size-mid: 9.375rem;
     --img-size-large: 15.625rem;
-    --vertical-separator: 12.5rem;
+    --vertical-separator: 16rem;
     --border: 1.25rem;
     --internal-padding: 1.5rem;
     --bullet-size: 1.5rem;
@@ -36,7 +36,3 @@ h1, h2, h3, h4, h5, h6, p {
     padding: 0;
 }
 
-#root {
-    display: grid;
-    grid-template-columns: var(--vertical-separator) auto;
-}
