@@ -29,7 +29,7 @@ function Layout() {
                 break;
         }
         return (
-            <Link to={`../${path}`}>
+            <Link to={`../${path}`} className="nav_button_link">
                 <div className="nav_button">
                     <img src="/placeholder.png" />
                     <h1>{props.content}</h1>
