@@ -90,6 +90,16 @@
     .burger {
         background-color: var(--secondary);
         border-radius: var(--border);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .burger > * {
+        background-color: var(--text-color);
+        width: 60%;
+        height: var(--bar-size);
     }
 
     .mobile_nav {

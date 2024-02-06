@@ -97,7 +97,7 @@ function Layout() {
             case breakPoints[0]:
                 return (
                     <>
-                        <h1>PlaceHolder</h1>
+                        <h1 className="nav_button_active">PlaceHolder</h1>
                         <div className="burger" onClick={()=>{
                             if (mobileNavActive == "mobile_nav" || mobileNavActive == "mobile_nav mobile_nav_deactive")
                                 setMobileNavActive("mobile_nav mobile_nav_active");
