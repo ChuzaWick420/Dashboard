@@ -133,4 +133,27 @@
         animation-fill-mode: forwards;
         animation-direction: reverse;
     }
+
+    .burger_active {
+        justify-content: center;
+        position: relative;
+
+        * {
+            position: absolute;
+        }
+
+        *:nth-child(1) {
+            rotate: 45deg;
+        }
+
+        *:nth-child(2) {
+            rotate: -45deg;
+        }
+
+        *:nth-child(3) {
+            width: 0;
+            height: 0;
+        }
+    }
+
 }

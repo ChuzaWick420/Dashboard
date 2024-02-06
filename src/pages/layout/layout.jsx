@@ -9,6 +9,7 @@ function Layout() {
     
     const [targetWidth, setTargetWidth] = useState(window.innerWidth);
     const [mobileNavActive, setMobileNavActive] = useState("mobile_nav");   
+    const [navActive, setNavActive] = useState("burger");
 
     let Options = ((props)=>{
 
@@ -81,6 +82,7 @@ function Layout() {
     let Nav = ()=>{
         let Option = [];
         
+
         const loc = useLocation();
         const current_loc = loc.pathname.split("/")[1];
         
@@ -98,11 +100,16 @@ function Layout() {
                 return (
                     <>
                         <h1 className="nav_button_active">PlaceHolder</h1>
-                        <div className="burger" onClick={()=>{
+                        <div className={navActive} onClick={()=>{
                             if (mobileNavActive == "mobile_nav" || mobileNavActive == "mobile_nav mobile_nav_deactive")
                                 setMobileNavActive("mobile_nav mobile_nav_active");
                             else
                                 setMobileNavActive("mobile_nav mobile_nav_deactive");
+
+                            if (navActive == "burger")
+                                setNavActive("burger burger_active");
+                            else
+                                setNavActive("burger");
                         }}>
                             <div className="burger_line_1"></div>
                             <div className="burger_line_2"></div>
