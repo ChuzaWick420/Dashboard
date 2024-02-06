@@ -115,7 +115,12 @@ function Layout() {
                 </div>
             <Comp />
             </div>
-            <Outlet /> 
+
+            <div className="separator"></div>
+
+            <Outlet />
+
+            {/* renders when on mobile view */}
             <Mobile_Nav />
         </div>
     );
