@@ -75,15 +75,14 @@ function Layout() {
         });
     }, []);
 
+    const contents = ["Overview", "Experience", "Projects", "Case Studies"];
+    const paths = ["overview", "experience", "projects", "case_studies"];
+    
     let Nav = ()=>{
-
-        const loc = useLocation();
-        const current_loc = loc.pathname.split("/")[1];
-        
         let Option = [];
         
-        const contents = ["Overview", "Experience", "Projects", "Case Studies"];
-        const paths = ["overview", "experience", "projects", "case_studies"];
+        const loc = useLocation();
+        const current_loc = loc.pathname.split("/")[1];
         
         const [isActiveID, setActiveID] = useState(paths.indexOf(current_loc));
 
@@ -122,16 +121,27 @@ function Layout() {
     }
 
     let Mobile_Nav = ()=>{
+        let Option = [];
+        
+        const loc = useLocation();
+        const current_loc = loc.pathname.split("/")[1];
+        
+        const [isActiveID, setActiveID] = useState(paths.indexOf(current_loc));
+
+        for (let i = 0; i < 4; i++) {
+            Option.push(
+                <Options key={i} content={contents[i]} path={paths[i]} index={i} handler={setActiveID}/>
+            );
+        }
         switch (targetWidth) {
        
             case breakPoints[0]:
                 return (
-                    <div className={mobileNavActive}>
-                        <Options content="Overview" path="overview"/>
-                        <Options content="Experience" path="experience"/>
-                        <Options content="Projects" path="projects"/>
-                        <Options content="Case Studies" path="case_studies"/>
-                    </div>
+                    <ActiveButton.Provider value={isActiveID}>
+                        <div className={mobileNavActive}>
+                            {Option}
+                        </div>
+                    </ActiveButton.Provider>
                 );
             
             default:
