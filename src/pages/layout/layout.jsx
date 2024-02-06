@@ -115,8 +115,7 @@ function Layout() {
                 </div>
             <Comp />
             </div>
-            {/* <Outlet />  */}
-            <div className="dev_container">test</div>
+            <Outlet /> 
             <Mobile_Nav />
         </div>
     );

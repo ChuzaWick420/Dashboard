@@ -28,6 +28,7 @@ body, #root {
     width: 100vw;
     color: var(--text-color);
     background-color: var(--background-color);
+    font-family: "Open Sans", sans-serif;
 }
 
 /* gets rid of the default margins and padding */
