@@ -98,7 +98,7 @@
         width: 70%;
         height: 100%;
         left: calc(-1 * 70 / 100 * 100vw);
-        top: calc(var(--vertical-separator) / 4);
+        top: calc(var(--vertical-separator) / 4 + var(--bar-size));
     }
 
     @keyframes nav_slide {
