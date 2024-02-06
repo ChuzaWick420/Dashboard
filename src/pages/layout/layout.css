@@ -54,6 +54,10 @@
     text-decoration: none;
 }
 
+.nav_button_active {
+    color: var(--primary);
+}
+
 @media (max-width: 768px) {
     .layout_container {
         grid-template-rows: calc(var(--vertical-separator) / 4) var(--bar-size) auto;

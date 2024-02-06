@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 import "./layout.css";
 import { Link, Outlet } from "react-router-dom";
+
+const ActiveButton = createContext();
 
 function Layout() {
     
@@ -9,16 +11,30 @@ function Layout() {
     const [mobileNavActive, setMobileNavActive] = useState("mobile_nav");   
 
     let Options = ((props)=>{
+
+        const [isActive, setActive] = useState("");
+
+        const activeID = useContext(ActiveButton);
+
+        useEffect(()=>{
+
+            if (activeID == props.index)
+                setActive("nav_button_active");
+            else
+                setActive("");
+
+        }, [activeID])
+
         let path = null;
 
         switch (props.path) {
             case "overview":
                 path = "overview";
                 break;
-            case "experience":
-                path = "experience";
+                case "experience":
+                    path = "experience";
                 break;
-            case "projects":
+                case "projects":
                 path = "projects"
                 break;
             case "case_studies":
@@ -29,10 +45,12 @@ function Layout() {
                 break;
         }
         return (
-            <Link to={`../${path}`} className="nav_button_link">
+            <Link to={`../${path}`} className="nav_button_link" onClick={()=>{
+                props.handler(props.index);
+            }}>
                 <div className="nav_button">
                     <img src="/placeholder.png" />
-                    <h1>{props.content}</h1>
+                    <h1 className={isActive}>{props.content}</h1>
                 </div>
             </Link>
         );
@@ -57,7 +75,21 @@ function Layout() {
         });
     }, []);
 
-    let Comp = ()=>{
+    let Nav = ()=>{
+
+        const [isActiveID, setActiveID] = useState(-1);
+
+        let Option = [];
+        
+        const contents = ["Overview", "Experience", "Projects", "Case Studies"];
+        const paths = ["overview", "experience", "projects", "case_studies"];
+
+        for (let i = 0; i < 4; i++) {
+            Option.push(
+                <Options key={i} content={contents[i]} path={paths[i]} index={i} handler={setActiveID}/>
+            );
+        }
+
         switch (targetWidth) {
         
             case breakPoints[0]:
@@ -79,12 +111,9 @@ function Layout() {
             
             default:
                 return (
-                    <>
-                        <Options content="Overview" path="overview"/>
-                        <Options content="Experience" path="experience"/>
-                        <Options content="Projects" path="projects"/>
-                        <Options content="Case Studies" path="case_studies"/>
-                    </>
+                    <ActiveButton.Provider value={isActiveID}>
+                        {Option}
+                    </ActiveButton.Provider>
                 );
         }
     }
@@ -113,7 +142,7 @@ function Layout() {
                 <div className="img_mid_container">
                     <img src="/Artorias.png" />
                 </div>
-            <Comp />
+            <Nav />
             </div>
 
             <div className="separator"></div>
