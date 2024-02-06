@@ -89,4 +89,26 @@
         top: calc(var(--vertical-separator) / 4);
     }
 
+    @keyframes nav_slide {
+        from {
+            left: calc(-1 * 70 / 100 * 100vw);
+        }
+        to {
+            left: 0;
+        }
+    }
+
+    .mobile_nav_active {
+        animation-name: nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+    }
+
+    .mobile_nav_deactive {
+        animation-name: nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
+    }
 }

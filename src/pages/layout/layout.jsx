@@ -6,7 +6,8 @@ import { Outlet } from "react-router-dom";
 function Layout() {
     
     const [targetWidth, setTargetWidth] = useState(window.innerWidth);
- 
+    const [mobileNavActive, setMobileNavActive] = useState("mobile_nav");   
+
     let Options = ((props)=>{
         return (
             <div className="nav_button">
@@ -38,7 +39,12 @@ function Layout() {
                 return (
                     <>
                         <h1>PlaceHolder</h1>
-                        <div className="burger">
+                        <div className="burger" onClick={()=>{
+                            if (mobileNavActive == "mobile_nav" || mobileNavActive == "mobile_nav mobile_nav_deactive")
+                                setMobileNavActive("mobile_nav mobile_nav_active");
+                            else
+                                setMobileNavActive("mobile_nav mobile_nav_deactive");
+                        }}>
                             <div className="burger_line_1"></div>
                             <div className="burger_line_2"></div>
                             <div className="burger_line_3"></div>
@@ -60,15 +66,17 @@ function Layout() {
 
     let Mobile_Nav = ()=>{
         switch (targetWidth) {
+       
             case breakPoints[0]:
                 return (
-                    <div className="mobile_nav">
+                    <div className={mobileNavActive}>
                         <Options content="Overview" />
                         <Options content="Experience" />
                         <Options content="Projects" />
                         <Options content="Case Studies" />
                     </div>
                 );
+            
             default:
                 return <></>;
         }
