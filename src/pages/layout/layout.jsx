@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./layout.css";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Layout() {
     
@@ -9,26 +9,51 @@ function Layout() {
     const [mobileNavActive, setMobileNavActive] = useState("mobile_nav");   
 
     let Options = ((props)=>{
+        let path = null;
+
+        switch (props.path) {
+            case "overview":
+                path = "overview";
+                break;
+            case "experience":
+                path = "experience";
+                break;
+            case "projects":
+                path = "projects"
+                break;
+            case "case_studies":
+                path = "case_studies";
+                break;
+            default:
+                path = "404";
+                break;
+        }
         return (
-            <div className="nav_button">
-                <img src="/placeholder.png" />
-                <h1>{props.content}</h1>
-            </div>
+            <Link to={`../${path}`}>
+                <div className="nav_button">
+                    <img src="/placeholder.png" />
+                    <h1>{props.content}</h1>
+                </div>
+            </Link>
         );
     });
 
     //break points for large phone, tablet, laptop
     const breakPoints = [425, 768, 1024];
 
-    useEffect(()=>{
-        window.addEventListener("resize", ()=>{
+    function resizer() {
             if (window.innerWidth < breakPoints[1])
                 setTargetWidth(breakPoints[0]);
             else if (window.innerWidth < breakPoints[2])
                 setTargetWidth(breakPoints[1]);
             else
                 setTargetWidth(breakPoints[2]);
+    }
 
+    useEffect(()=>{
+        resizer();
+        window.addEventListener("resize", ()=>{
+            resizer();
         });
     }, []);
 
@@ -55,10 +80,10 @@ function Layout() {
             default:
                 return (
                     <>
-                        <Options content="Overview" />
-                        <Options content="Experience" />
-                        <Options content="Projects" />
-                        <Options content="Case Studies" />
+                        <Options content="Overview" path="overview"/>
+                        <Options content="Experience" path="experience"/>
+                        <Options content="Projects" path="projects"/>
+                        <Options content="Case Studies" path="case_studies"/>
                     </>
                 );
         }
@@ -70,10 +95,10 @@ function Layout() {
             case breakPoints[0]:
                 return (
                     <div className={mobileNavActive}>
-                        <Options content="Overview" />
-                        <Options content="Experience" />
-                        <Options content="Projects" />
-                        <Options content="Case Studies" />
+                        <Options content="Overview" path="overview"/>
+                        <Options content="Experience" path="experience"/>
+                        <Options content="Projects" path="projects"/>
+                        <Options content="Case Studies" path="case_studies"/>
                     </div>
                 );
             
