@@ -46,7 +46,7 @@
     background-color: red;
 }
 
-@media (max-width: calc((425px + 768px) / 2)) {
+@media (max-width: 768px) {
     .layout_container {
         grid-template-rows: calc(var(--vertical-separator) / 4) auto;
         grid-template-columns: auto;
@@ -80,8 +80,13 @@
         border-radius: var(--border);
     }
 
-}
-
-@media (max-width: 768px) {
+    .mobile_nav {
+        background-color: var(--background-color);
+        position: absolute;
+        width: 70%;
+        height: 100%;
+        left: calc(-1 * 70 / 100 * 100vw);
+        top: calc(var(--vertical-separator) / 4);
+    }
 
 }

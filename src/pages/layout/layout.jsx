@@ -21,21 +21,13 @@ function Layout() {
 
     useEffect(()=>{
         window.addEventListener("resize", ()=>{
-            for (let i = 1; i < breakPoints.length; i++) {
-                let average = (breakPoints[i] + breakPoints[i - 1]) / 2;
+            if (window.innerWidth < breakPoints[1])
+                setTargetWidth(breakPoints[0]);
+            else if (window.innerWidth < breakPoints[2])
+                setTargetWidth(breakPoints[1]);
+            else
+                setTargetWidth(breakPoints[2]);
 
-                if (window.innerWidth < average) {
-                    setTargetWidth(breakPoints[i - 1]);
-                    break;
-                }
-                else {
-                    setTargetWidth(breakPoints[i]);
-
-                    if(window.innerWidth < breakPoints[i])
-                        break;
-                }
-            }
-            
         });
     }, []);
 
@@ -66,6 +58,22 @@ function Layout() {
         }
     }
 
+    let Mobile_Nav = ()=>{
+        switch (targetWidth) {
+            case breakPoints[0]:
+                return (
+                    <div className="mobile_nav">
+                        <Options content="Overview" />
+                        <Options content="Experience" />
+                        <Options content="Projects" />
+                        <Options content="Case Studies" />
+                    </div>
+                );
+            default:
+                return <></>;
+        }
+    };
+
     return (
         <div className="layout_container">
             <div className="side_panel">
@@ -76,6 +84,7 @@ function Layout() {
             </div>
             {/* <Outlet />  */}
             <div className="dev_container">test</div>
+            <Mobile_Nav />
         </div>
     );
 }
