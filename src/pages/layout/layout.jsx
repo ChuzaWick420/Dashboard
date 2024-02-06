@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 import "./layout.css";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const ActiveButton = createContext();
 
@@ -77,12 +77,15 @@ function Layout() {
 
     let Nav = ()=>{
 
-        const [isActiveID, setActiveID] = useState(-1);
-
+        const loc = useLocation();
+        const current_loc = loc.pathname.split("/")[1];
+        
         let Option = [];
         
         const contents = ["Overview", "Experience", "Projects", "Case Studies"];
         const paths = ["overview", "experience", "projects", "case_studies"];
+        
+        const [isActiveID, setActiveID] = useState(paths.indexOf(current_loc));
 
         for (let i = 0; i < 4; i++) {
             Option.push(
