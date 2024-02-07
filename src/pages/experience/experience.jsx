@@ -131,7 +131,7 @@ function Experience() {
     let TimeLine = ()=>{
         return (
             <div className="timeline">
-                <TimeLineHistory date={"1-1-2020"} />
+                <TimeLineHistory date={"2020"} />
                 <TimeLineCard header={"Front End dev"} content={"Hello"} />
             </div>
         );
