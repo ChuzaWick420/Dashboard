@@ -1,16 +1,5 @@
-.experience_container{
-    padding-block: var(--major-content-spacing);
-    padding-inline: var(--internal-padding);
-}
-
-.experience_container h1 {
-    font-size: var(--large-heading);
-}
-
-.timeline_container {
-    display: grid;
-    grid-template-columns: var(--bullet-size) auto;
-    margin-top: var(--internal-padding);
+.important_text {
+    color: var(--primary);
 }
 
 .bullet {
@@ -20,43 +9,100 @@
     border-radius: var(--border);
 }
 
+.category_container {
+    margin-block: var(--major-content-spacing);
+    padding-inline: var(--internal-padding);
+}
+
+.timeline_container {
+    padding-top: var(--internal-padding); 
+}
+
 .timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-rows: var(--bullet-size) auto;
 }
 
-.timeline_progress_bar {
-    background-color: var(--text-color);
-    width: var(--bar-size);
-    height: 10px;
-}
-
-.timeline_history_bar {
+.timeline_history {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: var(--bullet-size);
-    gap: calc(var(--internal-padding) / 2);
 }
 
-.timeline_extension_bar {
-    width: calc(var(--major-content-spacing) * 2);
-    height: var(--bar-size);
-    background-color: var(--text-color);
-}
-
-.timeline_history_time {
+.timeline_history p {
+    padding-left: var(--internal-padding);
     font-size: var(--small-text);
 }
 
-.history_card {
-    border-radius: var(--border);
-    height: 50px;
-    width: 100%;
-    background-color: var(--secondary);
+.timeline_extension {
+    height: var(--bar-size);
+    width: calc(var(--internal-padding) * 3);
+    background-color: var(--text-color);
 }
 
-.history_card > h3 {
-    font-size: var(--sub-heading);
+.timeline_card_container {
+    display: grid;
+    grid-template-columns: var(--bullet-size) auto;
+}
+
+.timeline_progress {
+    width: var(--bar-size);
+    height: 100%;
+    background-color: var(--text-color);
+    justify-self: center;
+}
+
+.timeline_card {
+    border-radius: var(--border);
+    background-color: var(--secondary);
+    padding-inline: var(--internal-padding);
+}
+
+.timeline_card h3 {
+    color: var(--primary);
+    font-size: var(--body-text);
+    padding-top: var(--internal-padding);
+}
+
+.timeline_card p {
+    font-size: var(--body-text);
+}
+
+.projects, .experience_points {
+    padding-inline: 0;
+    margin: 0;
+    padding-top: calc(var(--internal-padding) / 2);
+    list-style: none;
+}
+
+.experience_points {
+    padding-bottom: var(--internal-padding);
+}
+
+.list_item_container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.list_item_container .bullet {
+    width: var(--small-text);
+    height: var(--small-text);
+}
+
+.list_item_container svg {
+    fill: var(--primary);
+    width: var(--bullet-size);
+    height: var(--bullet-size);
+    transform: scale(0.5, 0.5);
+}
+
+.projects a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.projects p {
+    font-size: var(--small-text);
 }
