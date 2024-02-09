@@ -1,3 +1,7 @@
+.experience_container {
+    overflow-y: scroll;
+}
+
 .important_text {
     color: var(--primary);
 }
@@ -109,4 +113,10 @@
 
 .projects p {
     font-size: var(--small-text);
+}
+
+@media (max-width: 768px) {
+    .important_text {
+        font-size: var(--sub-heading);
+    }
 }
