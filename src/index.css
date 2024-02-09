@@ -41,3 +41,11 @@ p {
     font-family: "Lato", sans-serif;
 }
 
+::-webkit-scrollbar{
+    width: calc(2 * var(--bar-size));
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+}
+
