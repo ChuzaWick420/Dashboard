@@ -4,6 +4,284 @@ import "./experience.css";
 
 function Experience() {
 
+  //JSON filtered format
+
+  //sample
+  /*
+  data = [
+    {
+      "company_name": String,
+      "joinings": [Number],
+      "leave": [Number],
+      "timeline": [
+        {
+          "year": Number,
+          "roles": [String],
+          "projects": [
+            {
+              "name": String,
+              "url": String,
+              "overview": [String]
+            },
+            {},
+            {}
+          ]
+        },
+        {},
+        {}
+      ]
+    },
+    {},
+    {}
+  ]
+  */
+
+    const [page, setPage] = useState(<></>);
+
+    useEffect(()=>{
+        //sends request
+
+        //translates data into acceptable format
+        let data = [
+          {
+            "company_name": "Company_A",
+            "joinings": [2021, 2023],
+            "leaves": [2022],
+            "timeline": [
+              {
+                "year": 2021,
+                "roles": ["web_dev", "game_dev"],
+                "projects": [
+                  {
+                    "name": "Articles_Web",
+                    "url": "https://github.com/ChuzaWick420/Articles_Web",
+                    "overview": [
+                        "Practiced React",
+                        "Learnt about gradient text"
+                    ]
+                  }
+                ]
+              },
+              {
+                "year": 2022,
+                "roles": ["web_dev"],
+                "projects": [
+                    {
+                        "name": "Weather_APP",
+                        "url": "https://github.com/ChuzaWick420/weather-app",
+                        "overview": [
+                            "Tried to practice responsiveness but failed",
+                            "Learnt about APIs"
+                        ]
+                    }
+                ]
+              },
+              {
+                "year": 2023,
+                "roles": ["web_dev"],
+                "projects": [
+                    {
+                        "name": "play_store_clone",
+                        "url": "https://github.com/ChuzaWick420/play_store_clone",
+                        "overview": [
+                            "Tried to learn collaboration on github"
+                        ]
+                    }
+                ]
+              },
+              {
+                "year": 2024,
+                "roles": ["game_dev", "web_dev"],
+                "projects": []
+              }
+            ]
+          },
+          {
+            "company_name": "Company_B",
+            "joinings": [2022],
+            "leaves": [2023],
+            "timeline": [
+              {
+                "year": 2022,
+                "roles": ["game_dev"],
+                "projects": [
+                  {
+                    "name": "2D-Platformer",
+                    "url": "https://github.com/ChuzaWick420/2D-Platformer-Game",
+                    "overview": [
+                        "Learnt a lot about tile maps and games in general",
+                        "Learnt about hitboxes",
+                        "Learnt about physics",
+                        "Learnt about gameloops and animations"
+                    ]
+                  },
+                ]
+              },
+              {
+                "year": 2023,
+                "roles": ["game_dev"],
+                "projects": [
+                  {
+                    "name": "FlappyBird",
+                    "url": "https://github.com/ChuzaWick420/Flappy-Bird-Recreation",
+                    "overview": [
+                        "Made a fully working game"
+                    ]
+                  },
+                ]
+              }
+            ] 
+          }
+        ];
+
+        //figure out how many company_cards the page contains
+        let company_cards_count = 0;
+        let joinings = [];
+        // let leaves = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const company = data[i];
+            company_cards_count += company["joinings"].length;
+
+            for (let j = 0; j < company["joinings"].length; j++) {
+                joinings.push(company["joinings"][j]);
+            }
+
+            // for (let z = 0; z < company["leaves"].length; z++){
+                // leaves.push(company["leaves"][z]);
+            // }
+        }
+
+        //sort in descending order
+        joinings.sort((a, b)=>{return (b - a);});
+        // leaves.sort((a, b)=>{return (b - a);});
+
+        let TimeLineCard = (props)=>{
+            return (
+                <div className="timeline_card_container">
+                    <div className="timeline_progress"></div>
+                    <div className="timeline_card">
+                        <h3>{props.header}</h3>
+                        <ul className="projects">
+                            {projectsList}
+                        </ul>
+                        <ul className="experience_points">
+                            {experienceList}
+                        </ul>
+                    </div>
+                </div>
+            );
+        };
+        
+        let major_containers = [];
+
+        //append the category_container
+        for (let i = 0; i < company_cards_count; i++) {
+
+            let minor_cards_count = 0;
+            let minor_cards = [];
+
+            //Task 1: determine currently which major card is being processed
+            //Solution attempt: what if we extract joinings from all companies, sort in descending order, iterate over em, find which company that joining belongs to = current major card
+            //Task 2: determine how many minor cards current major card has
+            let company_index = -1;
+
+            //first major card is where person is currently working
+            //there are 2 types of companies
+            //current company (where num of leaves and joinings are off by 1)
+            //historic companies (where num of leaves and joinings are same)
+
+            let TimeLineHistory = (props)=>{
+                return (
+                    <div className="timeline_history">
+                        <div className="bullet"></div>
+                        <div className="timeline_extension"></div>
+                        <p>{props.date}</p>
+                    </div>
+                );
+            };
+        
+            let TimeLine = (props)=>{
+                //roles duplication fix
+                let role_list = "";
+
+                let roles_count = props.roles.length;
+
+                for (let i = 0; i < roles_count; i++){
+                    role_list += props.roles[i];
+                    if (i + 1 == roles_count)
+                        role_list += "";
+                    else
+                        role_list += ", ";
+                }
+                
+                return (
+                    <div className="timeline">
+                        <TimeLineHistory date={props.year} />
+                        <TimeLineCard header={role_list} links={[]} content={[]} />
+                    </div>
+                );
+            };
+            
+            if (i == 0) {
+                //go through all companies
+                for (let j = 0; j < data.length; j++) {
+                    let joins = data[j]["joinings"].length;
+                    let leaves = data[j]["leaves"].length;
+
+                    if (joins != leaves) {
+                        //this is a current company
+                        company_index = j;
+                        break;
+                    }
+                }
+
+                //after 1st company is found read from latest history till it's highest joining
+                let timeline = data[company_index]["timeline"]; 
+                
+                for (let j = timeline.length - 1; j >= 0; j--) {
+
+                    let current_year = timeline[j]["year"];
+                    let joining = data[company_index]["joinings"];
+
+                    if (current_year < joining[joining.length - 1])
+                        break;
+
+                    //push minor cards into current major card
+                    minor_cards.push(
+                        <TimeLine key={j} year={current_year} roles={timeline[j]["roles"]} projects={timeline[j]["projects"]} />
+                    );
+                }
+            }
+ 
+            let TimeLineContainer = ()=>{
+                return (
+                    <div className="timeline_container">
+                        {/* <TimeLine /> */}
+                        {minor_cards}
+                        <div className="bullet"></div>
+                    </div>
+                );
+            };
+
+            major_containers.push(
+                <div key={i} className="category_container">
+                    <h1 className="important_text">Company Name</h1>
+                    <TimeLineContainer />
+                </div>
+            );
+        }
+
+        setPage(
+            <div className="experience_container">
+                {major_containers}
+            </div>
+        );
+
+    }, []);
+    
+    //return the page after the useEffect
+
     const [projectsList, setProjectsList] = useState(null);
     const [experienceList, setExperienceList] = useState(null);
 
@@ -96,13 +374,19 @@ function Experience() {
         );
     };
 
+    // return (
+        // <div className="experience_container">
+            {/* <div className="category_container"> */}
+                {/* <h1 className="important_text">Company Name</h1> */}
+                {/* <TimeLineContainer /> */}
+            {/* </div> */}
+        {/* </div> */}
+    // );
+
     return (
-        <div className="experience_container">
-            <div className="category_container">
-                <h1 className="important_text">Company Name</h1>
-                <TimeLineContainer />
-            </div>
-        </div>
+        <>
+            {page}
+        </>
     );
 }
 
