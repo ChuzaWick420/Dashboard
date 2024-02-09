@@ -92,7 +92,23 @@ function Experience() {
               {
                 "year": 2024,
                 "roles": ["game_dev", "web_dev"],
-                "projects": []
+                "projects": [
+                    {
+                        "name": "Dodge_em",
+                        "url": "https://github.com/waseem087/Dodge-em",
+                        "overview": [
+                            "Learnt about software design",
+                            "Learnt about OOP"
+                        ]
+                    },
+                    {
+                        "name": "discord_clone",
+                        "url": "https://github.com/ChuzaWick420/discord_clone",
+                        "overview": [
+                            "Learnt CSS"
+                        ]
+                    }
+                ]
               }
             ]
           },
@@ -156,6 +172,43 @@ function Experience() {
         joinings.sort((a, b)=>{return (b - a);});
         // leaves.sort((a, b)=>{return (b - a);});
 
+        let ProjectsLinks = (props) => {
+            let links = [];
+            for (let i = 0; i < props.links.length; i++) {
+                links.push(
+                    <li key={i}>
+                        <a href={props.links[i]["url"]} target="_blank">
+                            <div className="list_item_container">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M14.851 11.923c-.179-.641-.521-1.246-1.025-1.749-1.562-1.562-4.095-1.563-5.657 0l-4.998 4.998c-1.562 1.563-1.563 4.095 0 5.657 1.562 1.563 4.096 1.561 5.656 0l3.842-3.841.333.009c.404 0 .802-.04 1.189-.117l-4.657 4.656c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-1.952-1.951-1.952-5.12 0-7.071l4.998-4.998c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464.493.493.861 1.063 1.105 1.672l-.787.784zm-5.703.147c.178.643.521 1.25 1.026 1.756 1.562 1.563 4.096 1.561 5.656 0l4.999-4.998c1.563-1.562 1.563-4.095 0-5.657-1.562-1.562-4.095-1.563-5.657 0l-3.841 3.841-.333-.009c-.404 0-.802.04-1.189.117l4.656-4.656c.975-.976 2.256-1.464 3.536-1.464 1.279 0 2.56.488 3.535 1.464 1.951 1.951 1.951 5.119 0 7.071l-4.999 4.998c-.975.976-2.255 1.464-3.535 1.464-1.28 0-2.56-.488-3.535-1.464-.494-.495-.863-1.067-1.107-1.678l.788-.785z"/></svg>
+                                <p>{props.links[i]["display_text"]}</p>
+                            </div>
+                        </a>
+                    </li>
+                );
+            }
+
+            return links;
+
+        };
+
+        let ProjectsOverview = (props) => {
+            
+            let overviews = [];
+
+            for (let i = 0; i < props.overviews.length; i++) {
+                overviews.push(
+                    <li key={i}>
+                        <div className="list_item_container">
+                            <div className="bullet"></div>
+                            <p>{props.overviews[i]}</p>
+                        </div>
+                    </li>
+                );
+            }
+
+            return overviews;
+        };
+
         let TimeLineCard = (props)=>{
             return (
                 <div className="timeline_card_container">
@@ -163,10 +216,10 @@ function Experience() {
                     <div className="timeline_card">
                         <h3>{props.header}</h3>
                         <ul className="projects">
-                            {projectsList}
+                            <ProjectsLinks links={props.links} />
                         </ul>
                         <ul className="experience_points">
-                            {experienceList}
+                            <ProjectsOverview overviews={props.content} />
                         </ul>
                     </div>
                 </div>
@@ -207,22 +260,37 @@ function Experience() {
 
                 let roles_count = props.roles.length;
 
-                for (let i = 0; i < roles_count; i++){
-                    role_list += props.roles[i];
-                    if (i + 1 == roles_count)
+                for (let j = 0; j < roles_count; j++){
+                    role_list += props.roles[j];
+                    if (j + 1 == roles_count)
                         role_list += "";
                     else
                         role_list += ", ";
                 }
                 
+                let links_list = [];
+                let overview_list = [];
+
+                let num_of_projects = props.projects.length;
+
+                for (let j = 0; j < num_of_projects; j++) {
+                    links_list.push({
+                        "display_text": props.projects[j]["name"],
+                        "url": props.projects[j]["url"]
+                    });
+                    overview_list.push(props.projects[j]["overview"]);
+                }
+
                 return (
                     <div className="timeline">
                         <TimeLineHistory date={props.year} />
-                        <TimeLineCard header={role_list} links={[]} content={[]} />
+                        <TimeLineCard header={role_list} links={links_list} content={overview_list.flat()} />
                     </div>
                 );
             };
             
+            // let breaking_year = -1;
+
             if (i == 0) {
                 //go through all companies
                 for (let j = 0; j < data.length; j++) {
@@ -244,8 +312,10 @@ function Experience() {
                     let current_year = timeline[j]["year"];
                     let joining = data[company_index]["joinings"];
 
-                    if (current_year < joining[joining.length - 1])
+                    if (current_year < joining[joining.length - 1]) {
+                        // breaking_year = current_year;
                         break;
+                    }
 
                     //push minor cards into current major card
                     minor_cards.push(
@@ -257,7 +327,6 @@ function Experience() {
             let TimeLineContainer = ()=>{
                 return (
                     <div className="timeline_container">
-                        {/* <TimeLine /> */}
                         {minor_cards}
                         <div className="bullet"></div>
                     </div>
