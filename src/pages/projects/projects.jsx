@@ -32,7 +32,7 @@ function Projects() {
                 return (
                     <div className="projects_mobile_nav">
                         <div className="bar">
-                            <h3>Project_name</h3>
+                            <h3 className="important_text">Project_name</h3>
                             <div className="projects_burger">
                                 <div className="line_1"></div>
                                 <div className="line_2"></div>
