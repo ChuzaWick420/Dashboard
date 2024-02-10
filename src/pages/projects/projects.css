@@ -61,6 +61,25 @@
     border-width: var(--bar-size);
     margin-top: calc(var(--major-content-spacing) + var(--large-heading) + var(--internal-padding) * 3 / 2);
     margin-right: var(--internal-padding);
+    overflow: hidden;
     position: sticky;
     top: 0;
+}
+
+.nav_category {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_category p {
+    padding-inline: var(--internal-padding);
+}
+
+.nav_category .nav_option {
+    width: 100%;
+    text-align: center;
+}
+
+.nav_category *:hover {
+    background-color: var(--secondary);
 }

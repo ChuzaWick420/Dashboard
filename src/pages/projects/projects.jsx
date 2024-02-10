@@ -54,7 +54,34 @@ function Projects() {
                 </div>
             </div>
             <div className="nav_table">
-
+                <div className="nav_category">
+                    <div className="nav_category_heading">
+                        <p>Web</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_1</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_2</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_3</p>
+                    </div>
+                </div>
+                <div className="nav_category">
+                    <div className="nav_category_heading">
+                        <p>Games</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_1</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_2</p>
+                    </div>
+                    <div className="nav_option">
+                        <p>Project_3</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
