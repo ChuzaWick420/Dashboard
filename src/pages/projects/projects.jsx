@@ -41,7 +41,15 @@ function Projects() {
         <div className="projects_container">
             <div className="projects_list">
                 <div className="category_container">
-                    <h1 className="important_text">Company_name</h1>
+                    <h1 className="important_text">Web</h1>
+                    <ProjectCard />
+                    <ProjectCard />
+                    <ProjectCard />
+                </div>
+                <div className="category_container">
+                    <h1 className="important_text">Games</h1>
+                    <ProjectCard />
+                    <ProjectCard />
                     <ProjectCard />
                 </div>
             </div>

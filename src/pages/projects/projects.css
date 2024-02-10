@@ -1,7 +1,8 @@
 .projects_container{
     display: grid;
     grid-template-columns: 60% auto;
-}
+    overflow-y: scroll;
+ }
 
 .projects_container .projects_list {
     padding: 0;
@@ -10,7 +11,7 @@
 
 .project_card {
     height: calc(100vh - (2 * var(--major-content-spacing) + 4 * var(--internal-padding) + var(--large-heading)));
-    margin-top: var(--internal-padding);
+    margin-block: var(--internal-padding);
     background-color: var(--secondary);
     border-radius: var(--border);
     padding: var(--internal-padding);
@@ -50,4 +51,16 @@
     padding-block: calc(var(--internal-padding) / 2);
 }
 
-
+.nav_table {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - (2 * var(--major-content-spacing) + 2 * var(--internal-padding) + var(--large-heading)));
+    border-radius: var(--border);
+    border-style: solid;
+    border-color: var(--text-color);
+    border-width: var(--bar-size);
+    margin-top: calc(var(--major-content-spacing) + var(--large-heading) + var(--internal-padding) * 3 / 2);
+    margin-right: var(--internal-padding);
+    position: sticky;
+    top: 0;
+}
