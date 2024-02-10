@@ -27,15 +27,41 @@ function Projects() {
     };
 
     let MobileNav = ()=>{
+
+        const [navActive, setNavActive] = useState(<></>);
+
+        const [isActive, setisActive] = useState(false);
+
+        useEffect(()=>{
+            if (isActive)
+                setNavActive(
+                    <>
+                        <div className="line_1"></div>
+                        <div className="line_2"></div>
+                    </>
+                );
+            else
+                setNavActive(
+                    <span className="material-symbols-outlined">
+                        arrow_back_ios
+                    </span>
+                );
+        }, [isActive]);
+
         switch (targetWidth) {
             case 425:
                 return (
                     <div className="projects_mobile_nav">
                         <div className="bar">
                             <h3 className="important_text">Project_name</h3>
-                            <div className="projects_burger">
-                                <div className="line_1"></div>
-                                <div className="line_2"></div>
+                            <div className="projects_burger" onClick={()=>{
+                                //update the state of the button
+                                if (isActive)
+                                    setisActive(false);
+                                else
+                                    setisActive(true);
+                            }}>
+                                {navActive}
                             </div>
                         </div>
                         <div className="separator"></div>
@@ -55,7 +81,6 @@ function Projects() {
     }, [windowWidth])
 
     useEffect(()=>{
-        console.log(targetWidth);
         switch (targetWidth) {
             case 1024:
                 Navigation = ()=>{

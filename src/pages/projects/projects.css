@@ -120,7 +120,33 @@
             height: var(--buttons-width);
             margin: var(--margin);
             background-color: var(--secondary);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            span {
+                width: 0.5rem;
+            }
+
+            div {
+                width: 60%;
+                height: var(--bar-size);
+                background-color: var(--text-color);
+                position: absolute;
+            }
+
+            .line_1 {
+                rotate: -45deg;
+            }
+
+            .line_2 {
+                rotate: 45deg;
+            }
         }
+        
     }
 
 }
