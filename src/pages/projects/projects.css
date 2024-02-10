@@ -9,19 +9,22 @@
 }
 
 .project_card {
+    height: calc(100vh - (2 * var(--major-content-spacing) + 4 * var(--internal-padding) + var(--large-heading)));
+    margin-top: var(--internal-padding);
     background-color: var(--secondary);
     border-radius: var(--border);
-    padding-inline: var(--internal-padding);
-    margin-top: var(--internal-padding);
-    height: calc(100vh - (2 * var(--major-content-spacing) + 2 * var(--internal-padding) + var(--large-heading)));
-    overflow: hidden;
+    padding: var(--internal-padding);
+}
+
+.project_card > div {
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .project_header {
     display: grid;
     grid-template-columns: 50% 50%;
     height: 40%;
-    padding-block: var(--internal-padding);
 }
 
 .project_header h4 {
@@ -30,6 +33,7 @@
 
 .project_img {
     border-radius: var(--border);
+    margin-right: var(--internal-padding);
     overflow: hidden;
 }
 
@@ -39,12 +43,11 @@
 }
 
 .project_card .project_content {
-    height: calc(60% - 3 * var(--internal-padding));
-    overflow-y: scroll;
+    height: 60%;
 }
 
 .project_card .projects_content_section {
-    padding-block: var(--internal-padding);
+    padding-block: calc(var(--internal-padding) / 2);
 }
 
 
