@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./projects.css";
+import { windowSize } from "../layout/layout";
 
 function Projects() {
+
+    let windowWidth = useContext(windowSize);
+    const [targetWidth, setTargetWidth] = useState(null);
+    
+    let Navigation = ()=>{
+        switch (targetWidth) {
+            case 425:
+                return (
+                    <></>
+                );
+            
+            default:
+                return (
+                    <div className="nav_table">
+                        <NavCategory Heading={"Web"} />
+                        <NavCategory Heading={"Games"} />
+                    </div>
+                );
+
+        }
+    };
+
+    useEffect(()=>{
+        setTargetWidth(windowWidth);
+        //overwrite what Navigation returns
+    }, [windowWidth])
+
+    useEffect(()=>{
+        console.log(targetWidth);
+        switch (targetWidth) {
+            case 1024:
+                Navigation = ()=>{
+                    return (
+                        <div className="nav_table">
+                            <NavCategory Heading={"Web"} />
+                            <NavCategory Heading={"Games"} />
+                        </div>
+                    );
+                }
+
+            default:
+                Navigation = ()=>{
+                    return (
+                        <></>
+                    );
+                }
+        }
+    }, [targetWidth])
 
     let ContentSection = ()=>{
         return (
@@ -76,10 +125,7 @@ function Projects() {
                     <ProjectCard />
                 </div>
             </div>
-            <div className="nav_table">
-                <NavCategory Heading={"Web"} />
-                <NavCategory Heading={"Games"} />
-            </div>
+            <Navigation />
         </div>
     );
 }

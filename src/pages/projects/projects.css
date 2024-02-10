@@ -92,7 +92,7 @@
     }
 }
 
-@media (max-width: 412px) {
+@media (max-width: 425px) {
     .project_header {
         display: flex;
         flex-direction: column;

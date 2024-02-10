@@ -4,6 +4,7 @@ import "./layout.css";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const ActiveButton = createContext();
+const windowSize = createContext();
 
 function Layout() {
     
@@ -167,7 +168,9 @@ function Layout() {
 
             <div className="separator"></div>
 
-            <Outlet />
+            <windowSize.Provider value={targetWidth}>
+                <Outlet />
+            </windowSize.Provider>
 
             {/* renders when on mobile view */}
             <Mobile_Nav />
@@ -176,3 +179,4 @@ function Layout() {
 }
 
 export default Layout;
+export { windowSize };
