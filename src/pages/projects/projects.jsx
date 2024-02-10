@@ -37,6 +37,29 @@ function Projects() {
         );
     };
 
+    let NavProjectOption = (props)=>{
+        return (
+            <div className="nav_option">
+                <p>{props.Project}</p>
+            </div>
+        );
+    };
+
+    let NavCategory = (props)=>{
+        return (
+            <div className="nav_category">
+                <div className="nav_category_heading">
+                    <p>{props.Heading}</p>
+                </div>
+                <NavProjectOption Project={"Project_1"} />
+                <NavProjectOption Project={"Project_2"} />
+                <NavProjectOption Project={"Project_3"} />
+                <NavProjectOption Project={"Project_4"} />
+                <NavProjectOption Project={"Project_5"} />
+            </div>
+        );
+    }
+
     return (
         <div className="projects_container">
             <div className="projects_list">
@@ -54,34 +77,8 @@ function Projects() {
                 </div>
             </div>
             <div className="nav_table">
-                <div className="nav_category">
-                    <div className="nav_category_heading">
-                        <p>Web</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_1</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_2</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_3</p>
-                    </div>
-                </div>
-                <div className="nav_category">
-                    <div className="nav_category_heading">
-                        <p>Games</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_1</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_2</p>
-                    </div>
-                    <div className="nav_option">
-                        <p>Project_3</p>
-                    </div>
-                </div>
+                <NavCategory Heading={"Web"} />
+                <NavCategory Heading={"Games"} />
             </div>
         </div>
     );
