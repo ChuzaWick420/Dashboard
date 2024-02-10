@@ -26,6 +26,29 @@ function Projects() {
         }
     };
 
+    let MobileNav = ()=>{
+        switch (targetWidth) {
+            case 425:
+                return (
+                    <div className="projects_mobile_nav">
+                        <div className="bar">
+                            <h3>Project_name</h3>
+                            <div className="projects_burger">
+                                <div className="line_1"></div>
+                                <div className="line_2"></div>
+                            </div>
+                        </div>
+                        <div className="separator"></div>
+                    </div>
+                );
+
+            default:
+                return (
+                    <></>
+                );
+        }
+    };
+
     useEffect(()=>{
         setTargetWidth(windowWidth);
         //overwrite what Navigation returns
@@ -111,6 +134,7 @@ function Projects() {
 
     return (
         <div className="projects_container">
+            <MobileNav />
             <div className="projects_list">
                 <div className="category_container">
                     <h1 className="important_text">Web</h1>
