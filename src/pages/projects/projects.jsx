@@ -133,24 +133,26 @@ function Projects() {
     }
 
     return (
-        <div className="projects_container">
+        <>
             <MobileNav />
-            <div className="projects_list">
-                <div className="category_container">
-                    <h1 className="important_text">Web</h1>
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
+            <div className="projects_container">
+                <div className="projects_list">
+                    <div className="category_container">
+                        <h1 className="important_text">Web</h1>
+                        <ProjectCard />
+                        <ProjectCard />
+                        <ProjectCard />
+                    </div>
+                    <div className="category_container">
+                        <h1 className="important_text">Games</h1>
+                        <ProjectCard />
+                        <ProjectCard />
+                        <ProjectCard />
+                    </div>
                 </div>
-                <div className="category_container">
-                    <h1 className="important_text">Games</h1>
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
-                </div>
+                <Navigation />
             </div>
-            <Navigation />
-        </div>
+        </>
     );
 }
 
