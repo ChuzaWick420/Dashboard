@@ -149,22 +149,39 @@
         
     }
 
-    .mobile_nav_container_active, .mobile_nav_container_deactive {
+    .mobile_nav_container {
         --margin: calc(var(--vertical-separator) / (4 * 2) - var(--bullet-size));
         --buttons-width: calc(var(--vertical-separator) / 4 - 2 * var(--margin));
         position: absolute;
-        width: 100%;
+        width: 70%;
         background-color: var(--background-color);
-        top: calc(2 * var(--margin) + var(--buttons-width) + var(--bar-size));
-        /* overflow-y: scroll; */
+        top: calc(2 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)));
+        right: calc(-1 * 70 / 100 * 100vw);
     }
 
-    .mobile_nav_container_deactive {
-        right: -100vw;
+    @keyframes projects_nav_slide{
+
+        from {
+            right: calc(-1 * 70 / 100 * 100vw);
+        }
+
+        to {
+            right: 0vw;
+        }
     }
 
     .mobile_nav_container_active {
-        left: 0;
+        animation-name: projects_nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+    }
+
+    .mobile_nav_container_deactive {
+        animation-name: projects_nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
     }
 }
 

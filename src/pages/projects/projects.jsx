@@ -4,9 +4,15 @@ import "./projects.css";
 import { windowSize } from "../layout/layout";
 
 function Projects() {
-
+    
     let windowWidth = useContext(windowSize);
     const [targetWidth, setTargetWidth] = useState(null);
+    const [activeClass, setActiveClass] = useState("mobile_nav_container");
+    const [navActive, setNavActive] = useState(
+        <span className="material-symbols-outlined">
+            arrow_back_ios
+        </span>
+    );
     
     let Navigation = ()=>{
         switch (targetWidth) {
@@ -26,33 +32,23 @@ function Projects() {
         }
     };
 
+    let MobileNavPopup = () => {
+        switch (targetWidth) {
+            case 425:
+                return (
+                    <div className={activeClass}>
+                        <NavCategory Heading={"Web"} />
+                        <NavCategory Heading={"Games"} />
+                    </div> 
+                );
+
+            default:
+                return <></>;
+        }
+    };
+
     let MobileNav = ()=>{
-
-        const [navActive, setNavActive] = useState(<></>);
-        const [activeClass, setActiveClass] = useState("mobile_nav_container_active");
-        const [isActive, setisActive] = useState(false);
-
-        useEffect(()=>{
-            if (isActive) {
-                setNavActive(
-                    <>
-                        <div className="line_1"></div>
-                        <div className="line_2"></div>
-                    </>
-                );
-                setActiveClass("mobile_nav_container_active");
-            }
-
-            else {
-                setNavActive(
-                    <span className="material-symbols-outlined">
-                        arrow_back_ios
-                    </span>
-                );
-                setActiveClass("mobile_nav_container_deactive");
-            }
-        }, [isActive]);
-
+        
         switch (targetWidth) {
             case 425:
                 return (
@@ -61,19 +57,27 @@ function Projects() {
                                 <h3 className="important_text">Project_name</h3>
                                 <div className="projects_burger" onClick={()=>{
                                     //update the state of the button
-                                    if (isActive)
-                                        setisActive(false);
-                                    else
-                                        setisActive(true);
+                                    if(activeClass == "mobile_nav_container" || activeClass == "mobile_nav_container mobile_nav_container_deactive") {
+                                        setNavActive(<>
+                                            <div className="line_1"></div>
+                                            <div className="line_2"></div>
+                                        </>);
+                                        setActiveClass("mobile_nav_container mobile_nav_container_active");
+                                    }
+
+                                    else {
+                                        setNavActive(
+                                            <span className="material-symbols-outlined">
+                                                arrow_back_ios
+                                            </span>
+                                        );
+                                        setActiveClass("mobile_nav_container mobile_nav_container_deactive")
+                                    }
                                 }}>
                                     {navActive}
                                 </div>
                             </div>
                             <div className="separator"></div>
-                            <div className={activeClass}>
-                                <NavCategory Heading={"Web"} />
-                                <NavCategory Heading={"Games"} />
-                            </div>
                         </div>
                 );
 
@@ -148,6 +152,7 @@ function Projects() {
     return (
         <>
             <MobileNav />
+            <MobileNavPopup />
             <div className="projects_container">
                 <div className="projects_list">
                     <div className="category_container">
