@@ -154,11 +154,12 @@
     .mobile_nav_container {
         --margin: calc(var(--vertical-separator) / (4 * 2) - var(--bullet-size));
         --buttons-width: calc(var(--vertical-separator) / 4 - 2 * var(--margin));
-        position: absolute;
+        position: fixed;
         width: 70%;
+        height: calc(100% - 2 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)) );
+        overflow-y: scroll;
         background-color: var(--background-color);
-        top: calc(2 * var(--margin) + var(--buttons-width) + var(--bar-size));
-        
+        top: calc(2 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)));
         transform: translateX(calc(100% * 100 / 70));
     }
 
