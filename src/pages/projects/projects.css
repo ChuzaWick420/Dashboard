@@ -2,7 +2,9 @@
     display: grid;
     grid-template-columns: 70% auto;
     overflow-y: scroll;
- }
+    overflow-x: hidden;
+    position: relative;
+}
 
 .projects_container .projects_list {
     padding: 0;
@@ -155,18 +157,19 @@
         position: absolute;
         width: 70%;
         background-color: var(--background-color);
-        top: calc(2 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)));
-        right: calc(-1 * 70 / 100 * 100vw);
+        top: calc(2 * var(--margin) + var(--buttons-width) + var(--bar-size));
+        
+        transform: translateX(calc(100% * 100 / 70));
     }
 
     @keyframes projects_nav_slide{
 
         from {
-            right: calc(-1 * 70 / 100 * 100vw);
+            transform: translateX(calc(100% * 100 / 70));
         }
-
+        
         to {
-            right: 0vw;
+            transform: translateX(calc(100% * 100 / 70 - 100%));
         }
     }
 
