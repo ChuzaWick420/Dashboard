@@ -93,33 +93,46 @@ function Projects() {
         //overwrite what Navigation returns
     }, [windowWidth])
 
-    let ContentSection = ()=>{
+    let ContentSection = (props)=>{
         return (
             <div className="projects_content_section">
-                <h4>Description Heading</h4>
-                <p>content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content content </p>
+                <h4>{props.header}</h4>
+                <p>{props.para}</p>
             </div>
         );
     };
 
-    let ProjectCard = ()=>{
+    let ProjectCard = (props)=>{
+
+        const [content, setContent] = useState([]);
+
+        useEffect(()=>{
+            let content_list = [];
+
+            for (let paragraph of props.content) {
+                content_list.push(
+                    <ContentSection header={paragraph[0]} para={paragraph[1]} />
+                );
+            }
+
+            setContent(content_list);
+        }, []);
+
         return (
-            <div className="project_card">
+            <div className="project_card" id={props.proj_id}>
                 <div>
                     <div className="project_header">
                         <div className="project_details">
-                            <h3 className="important_text">Project_name</h3>
-                            <h4>Customer: @this-guy</h4>
-                            <h4>Started at: 1-1-2024</h4>
+                            <h3 className="important_text">{props.name}</h3>
+                            <h4>Customer: {props.customer}</h4>
+                            <h4>Started at: {props.date}</h4>
                         </div>
                         <div className="project_img">
                             <img src="/placeholder.png" />
                         </div>
                     </div>
                     <div className="project_content">
-                        <ContentSection />
-                        <ContentSection />
-                        <ContentSection />
+                        {content}
                     </div>
                 </div>
             </div>
@@ -156,15 +169,79 @@ function Projects() {
             <div className="projects_list">
                 <div className="category_container">
                     <h1 className="important_text">Web</h1>
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
+                    <ProjectCard proj_id="1" name="Blogify" customer="@customer_1" date="1-1-2024" img_url="" content={[
+                        [
+                            "Heading_1",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_2",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_3",
+                            "Paragraph"
+                        ]
+                    ]} />
+                    <ProjectCard proj_id="2" name="Articles" customer="@customer_2" date="4-1-2024" img_url="" content={[
+                        [
+                            "Heading_1",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_2",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_3",
+                            "Paragraph"
+                        ]
+                    ]} />
                 </div>
                 <div className="category_container">
                     <h1 className="important_text">Games</h1>
-                    <ProjectCard />
-                    <ProjectCard />
-                    <ProjectCard />
+                    <ProjectCard proj_id="3" name="Flappy Bird" customer="@customer_3" date="5-2-2024" img_url="" content={[
+                        [
+                            "Heading_1",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_2",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_3",
+                            "Paragraph"
+                        ]
+                    ]} />
+                    <ProjectCard proj_id="4" name="2D-Platformer" customer="@customer_4" date="5-3-2024" img_url="" content={[
+                        [
+                            "Heading_1",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_2",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_3",
+                            "Paragraph"
+                        ]
+                    ]} />
+                    <ProjectCard proj_id="5" name="Mario Clone" customer="@customer_5" date="6-4-2024" img_url="" content={[
+                        [
+                            "Heading_1",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_2",
+                            "Paragraph"
+                        ],
+                        [
+                            "Heading_3",
+                            "Paragraph"
+                        ]
+                    ]} />
                 </div>
             </div>
             <Navigation />

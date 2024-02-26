@@ -164,11 +164,9 @@
     }
 
     @keyframes projects_nav_slide{
-
         from {
             transform: translateX(calc(100% * 100 / 70));
         }
-        
         to {
             transform: translateX(calc(100% * 100 / 70 - 100%));
         }
