@@ -87,13 +87,26 @@ function Navigation(props) {
 function MobileNavPopup(props) {
     
     let windowWidth = useContext(windowSize);
+ 
+    const [categories, setCategories] = useState([]);
     
+    useEffect(()=>{
+        let categories = [];
+
+        for (let category of props.sections) {
+            categories.push(
+                <NavCategory key={props.sections.indexOf(category)} Heading={category} meta_data={props.meta_data}/>
+            );
+        }
+
+        setCategories(categories);
+    }, []);
+
     switch (windowWidth) {
         case 425:
             return (
                 <div className={props.popupStatus}>
-                    <NavCategory Heading={"Web"} />
-                    <NavCategory Heading={"Games"} />
+                    {categories}
                 </div> 
             );
 
@@ -231,7 +244,7 @@ function Projects() {
         <div className="projects_container">
 
             <MobileNav icon={navActive} popupStatus={activeClass} iconUpdater={setNavActive} popupTrigger={setActiveClass} />
-            <MobileNavPopup popupStatus={activeClass} />
+            <MobileNavPopup popupStatus={activeClass} sections={categories} meta_data={projects_meta} />
 
             <div className="projects_list">
                 <div className="category_container">
