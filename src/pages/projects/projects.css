@@ -1,7 +1,6 @@
 .projects_container{
     display: grid;
     grid-template-columns: 70% auto;
-    overflow-y: scroll;
     overflow-x: hidden;
     position: relative;
 }
@@ -9,6 +8,10 @@
 .projects_container .projects_list {
     padding: 0;
     margin: 0;
+}
+
+.projects_list {
+    overflow-y: scroll;
 }
 
 .project_card {

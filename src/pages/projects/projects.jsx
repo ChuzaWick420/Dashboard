@@ -47,7 +47,7 @@ function NavCategory(props) {
         
         </div>
     );
-}
+};
 
 function Navigation(props) {
 
@@ -81,37 +81,6 @@ function Navigation(props) {
                 </div>
             );
 
-    }
-};
-
-function MobileNavPopup(props) {
-    
-    let windowWidth = useContext(windowSize);
- 
-    const [categories, setCategories] = useState([]);
-    
-    useEffect(()=>{
-        let categories = [];
-
-        for (let category of props.sections) {
-            categories.push(
-                <NavCategory key={props.sections.indexOf(category)} Heading={category} meta_data={props.meta_data}/>
-            );
-        }
-
-        setCategories(categories);
-    }, []);
-
-    switch (windowWidth) {
-        case 425:
-            return (
-                <div className={props.popupStatus}>
-                    {categories}
-                </div> 
-            );
-
-        default:
-            return <></>;
     }
 };
 
@@ -222,7 +191,7 @@ function Projects() {
             ]
         },
         {
-            "Game": [
+            "Games": [
                 {"id": "proj_3", "name": "Flappy_Bird"},
                 {"id": "proj_4", "name": "2D_Platformer"},
                 {"id": "proj_5", "name": "Mario_Clone"}
@@ -239,6 +208,37 @@ function Projects() {
     let categories = projects_meta.map((obj)=>{
         return Object.keys(obj)[0];
     });
+
+    let MobileNavPopup = (props) => {
+
+        let windowWidth = useContext(windowSize);
+    
+        const [categories, setCategories] = useState([]);
+
+        useEffect(()=>{
+            let categories = [];
+
+            for (let category of props.sections) {
+                categories.push(
+                    <NavCategory key={props.sections.indexOf(category)} Heading={category} meta_data={props.meta_data}/>
+                );
+            }
+
+            setCategories(categories);
+        }, []);
+
+        switch (windowWidth) {
+            case 425:
+                return (
+                    <div className={props.popupStatus}>
+                        {categories}
+                    </div> 
+                );
+
+            default:
+                return <></>;
+        }
+    };
 
     return (
         <div className="projects_container">
