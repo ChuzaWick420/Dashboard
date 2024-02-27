@@ -6,7 +6,9 @@ import { windowSize } from "../layout/layout";
 function NavProjectOption (props) {
     return (
         <div className="nav_option">
-            <p>{props.proj_name}</p>
+            <a href={`#${props.proj_id}`}>
+                <p>{props.proj_name}</p>
+            </a>
         </div>
     );
 };
@@ -24,7 +26,7 @@ function NavCategory(props) {
             if (current_key == props.Heading) {
                 for (let project of obj[current_key]){
                     projects_list.push(
-                        <NavProjectOption key={obj[current_key].indexOf(project)} proj_name={project.name} />
+                        <NavProjectOption key={obj[current_key].indexOf(project)} proj_name={project.name} proj_id={project.id} />
                     );
                 }
             }
