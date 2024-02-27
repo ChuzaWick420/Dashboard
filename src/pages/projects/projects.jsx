@@ -24,7 +24,7 @@ function NavCategory(props) {
             if (current_key == props.Heading) {
                 for (let project of obj[current_key]){
                     projects_list.push(
-                        <NavProjectOption proj_name={project.name} />
+                        <NavProjectOption key={obj[current_key].indexOf(project)} proj_name={project.name} />
                     );
                 }
             }
@@ -58,7 +58,7 @@ function Navigation(props) {
 
         for (let section of props.sections) {
             categories_list.push(
-                <NavCategory Heading={section} meta_data={props.meta_data}/>
+                <NavCategory key={props.sections.indexOf(section)} Heading={section} meta_data={props.meta_data}/>
             );
         }
 
