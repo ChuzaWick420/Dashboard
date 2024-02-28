@@ -116,7 +116,7 @@
 }
 
 @media (max-width: 768px) {
-    .important_text {
+    .category_container .important_text {
         font-size: var(--sub-heading);
     }
 }
