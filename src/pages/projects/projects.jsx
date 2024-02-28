@@ -1,13 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 import "./projects.css";
 import { windowSize } from "../layout/layout";
 
+let activeProjectContext = createContext();
+
 function NavProjectOption (props) {
+    let activeProject = useContext(activeProjectContext);
+    const [highlighted, setHighlighted] = useState("");
+    
+    useEffect(()=>{
+        if (props.proj_id == activeProject.state)
+            setHighlighted("important_text");
+        
+        return ()=>{
+            setHighlighted("");
+        };
+
+    }, [activeProject.state]);
+    
     return (
-        <div className="nav_option">
+        <div className="nav_option" onClick={()=>{
+            //perform linear search and compare the ids to figure out index value
+            activeProject.handler(props.proj_id);
+        }}>
             <a href={`#${props.proj_id}`}>
-                <p>{props.proj_name}</p>
+                <p className={highlighted}>{props.proj_name}</p>
             </a>
         </div>
     );
@@ -37,6 +55,7 @@ function NavCategory(props) {
     }, []);
 
     return (
+        
         <div className="nav_category">
             
             <div className="nav_category_heading">
@@ -53,6 +72,7 @@ function Navigation(props) {
 
     let windowWidth = useContext(windowSize);
 
+    const [activeProject, setActiveProject] = useState(null);
     const [categories, setCategories] = useState([]);
 
     useEffect(()=>{
@@ -76,9 +96,15 @@ function Navigation(props) {
         
         default:
             return (
-                <div className="nav_table">
-                    {categories}
-                </div>
+                <activeProjectContext.Provider value={{
+                    "state": activeProject,
+                    "handler": setActiveProject,
+                    "data": props.meta_data 
+                }}>
+                    <div className="nav_table">
+                        {categories}
+                    </div>
+                </activeProjectContext.Provider>
             );
 
     }
@@ -213,6 +239,7 @@ function Projects() {
 
         let windowWidth = useContext(windowSize);
     
+        const [activeProject, setActiveProject] = useState(null);
         const [categories, setCategories] = useState([]);
 
         useEffect(()=>{
@@ -230,9 +257,15 @@ function Projects() {
         switch (windowWidth) {
             case 425:
                 return (
-                    <div className={props.popupStatus}>
-                        {categories}
-                    </div> 
+                    <activeProjectContext.Provider value={{
+                        "state": activeProject,
+                        "handler": setActiveProject,
+                        "data": props.meta_data 
+                    }}>
+                        <div className={props.popupStatus}>
+                            {categories}
+                        </div> 
+                    </activeProjectContext.Provider>
                 );
 
             default:
@@ -324,6 +357,7 @@ function Projects() {
                     ]} />
                 </div>
             </div>
+
             <Navigation sections={categories} meta_data={projects_meta} />
         </div>
     );
