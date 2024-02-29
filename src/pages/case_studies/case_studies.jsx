@@ -35,66 +35,6 @@ function ProjectContainer (props) {
     );
 };
 
-function StudyNav (props) {
-    
-    const[projects, setProjects] = useState([]);
-
-    let windowWidth = useContext(windowSize);
-
-    useEffect(()=>{
-        let projects_list = [];
-
-        for (let project of props.project_names) {
-            projects_list.push(
-                <Project key={props.project_names.indexOf(project)} heading={project} sections={props.meta_gen(props.project_names.indexOf(project))} />
-            );
-        }
-
-        setProjects(projects_list);
-
-    }, []);
-
-    const Project = (props) => {
-        
-        const [sections, setSections] = useState([]);
-        
-        useEffect(()=>{
-            let sections_list = [];
-
-            for (let section of props.sections) {
-                sections_list.push(
-                    <p key={props.sections.indexOf(section)} className="study_project_section">{section}</p>
-                );
-            }
-
-            setSections(sections_list);
-
-        }, []);
-
-        return (
-            <div className="study_project">
-                <p className="study_project_heading">{props.heading}</p>
-                {sections}
-            </div>
-        );
-
-    }
- 
-    switch(windowWidth) {
-        case 425:
-            return (
-                <></>
-            );
-
-        default:
-            return (
-                <div className="study_nav">
-                    {projects}
-                </div>
-            );
-    }   
-
-}
 
 function MobileNav (props) {
     let windowWidth = useContext(windowSize);
@@ -108,19 +48,25 @@ function MobileNav (props) {
     const [isActive, setActive] = useState(false);
 
     useEffect(()=>{
-        if (isActive == true)
+        if (isActive == true) {
             setActiveIcon(
                 <>
                     <div className="burger_line_1"></div>
                     <div className="burger_line_2"></div>
                 </>
             );
-        else
+
+            props.nav_controller.handler("study_nav study_nav_active");
+        }
+        else {
             setActiveIcon(
                 <span className="material-symbols-outlined">
                     arrow_back_ios
                 </span>
             );
+
+            props.nav_controller.handler("study_nav study_nav_deactive");
+        }
     }, [isActive]);
 
     switch (windowWidth) {
@@ -151,6 +97,8 @@ function MobileNav (props) {
 
 function Case_Studies() {
 
+    const [navClass, setNavClass] = useState("study_nav");
+
     const studies_meta = [
         {
             "Project_1": [
@@ -168,6 +116,57 @@ function Case_Studies() {
         }
     ];
 
+    function StudyNav (props) {
+
+        const[projects, setProjects] = useState([]);
+
+        useEffect(()=>{
+            let projects_list = [];
+
+            for (let project of props.project_names) {
+                projects_list.push(
+                    <Project key={props.project_names.indexOf(project)} heading={project} sections={props.meta_gen(props.project_names.indexOf(project))} />
+                );
+            }
+
+            setProjects(projects_list);
+
+        }, []);
+
+        const Project = (props) => {
+
+            const [sections, setSections] = useState([]);
+
+            useEffect(()=>{
+                let sections_list = [];
+
+                for (let section of props.sections) {
+                    sections_list.push(
+                        <p key={props.sections.indexOf(section)} className="study_project_section">{section}</p>
+                    );
+                }
+
+                setSections(sections_list);
+
+            }, []);
+
+            return (
+                <div className="study_project">
+                    <p className="study_project_heading">{props.heading}</p>
+                    {sections}
+                </div>
+            );
+
+        }
+    
+        return (
+            <div className={props.active_state}>
+                {projects}
+            </div>
+        );
+
+    }
+
     const projectNames = studies_meta.map((obj)=>{
         return Object.keys(obj)[0];
     });
@@ -179,7 +178,13 @@ function Case_Studies() {
     return (
         <div className="case_studies_container">
  
-            <MobileNav projects={projectNames} meta_gen={getProjectHeadings} />
+            <MobileNav 
+                projects={projectNames}
+                meta_gen={getProjectHeadings}
+                nav_controller={{
+                    "state": navClass,
+                    "handler": setNavClass
+            }} />
 
             <div className="study_list">
                 <ProjectContainer proj={projectNames[0]} content={[
@@ -211,7 +216,7 @@ function Case_Studies() {
                     ]
                 ]} />
             </div>
-            <StudyNav project_names={projectNames} meta_gen={getProjectHeadings} />
+            <StudyNav project_names={projectNames} meta_gen={getProjectHeadings} active_state={navClass} />
         </div>
     );
 }

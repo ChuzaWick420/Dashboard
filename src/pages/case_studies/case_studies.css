@@ -1,7 +1,7 @@
 .case_studies_container {
     display: grid;
     grid-template-columns: 70% auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .study_list {
@@ -30,6 +30,7 @@
     border-color: var(--text-color);
     border-width: var(--bar-size);
     border-style: solid;
+    background-color: var(--background-color);
 
     display: flex;
     flex-direction: column;
@@ -60,11 +61,13 @@
     .case_studies_container {
         display: flex;
         flex-direction: column;
+        position: relative;
     }
 
     .study_mobile_nav {
         display: grid;
         grid-template-rows: auto var(--bar-size);
+        display: fixed;
 
         .bar {
             --margin: calc(var(--vertical-separator) /(4* 2) - var(--bullet-size));
@@ -111,5 +114,44 @@
             }
         }
     }
+
+    .study_nav {
+        width: 70%;
+        position: absolute;
+        top: 0;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        height: 100%;
+        --margin: calc(var(--vertical-separator) /(4* 2) - var(--bullet-size));
+        --buttons-width: calc(var(--vertical-separator) / 4 - 2* var(--margin));
+        top: calc(1 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)));
+
+        transform: translateX(calc(100% * 100 / 70));
+    }
+
+    @keyframes study_nav_slide{
+        from {
+            transform: translateX(calc(100% * 100 / 70));
+        }
+        to {
+            transform: translateX(calc(100% * 100 / 70 - 100%));
+        }
+    }
+
+    .study_nav_active {
+        animation-name: study_nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+    }
+
+    .study_nav_deactive {
+        animation-name: study_nav_slide;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
+    }
+
 }
 
