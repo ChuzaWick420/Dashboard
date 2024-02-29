@@ -98,8 +98,8 @@ function Layout() {
         }
 
         switch (targetWidth) {
-        
             case breakPoints[0]:
+            case breakPoints[1]:
                 return (
                     <>
                         <h1 className="nav_button_active">PlaceHolder</h1>

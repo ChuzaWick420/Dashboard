@@ -35,7 +35,6 @@ function ProjectContainer (props) {
     );
 };
 
-
 function MobileNav (props) {
     let windowWidth = useContext(windowSize);
 
@@ -65,7 +64,8 @@ function MobileNav (props) {
                 </span>
             );
 
-            props.nav_controller.handler("study_nav study_nav_deactive");
+            if (props.nav_controller.state != "study_nav")
+                props.nav_controller.handler("study_nav study_nav_deactive");
         }
     }, [isActive]);
 
