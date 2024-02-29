@@ -96,6 +96,59 @@ function StudyNav (props) {
 
 }
 
+function MobileNav (props) {
+    let windowWidth = useContext(windowSize);
+
+    const [activeIcon, setActiveIcon] = useState(
+        <span className="material-symbols-outlined">
+            arrow_back_ios
+        </span>
+    );
+
+    const [isActive, setActive] = useState(false);
+
+    useEffect(()=>{
+        if (isActive == true)
+            setActiveIcon(
+                <>
+                    <div className="burger_line_1"></div>
+                    <div className="burger_line_2"></div>
+                </>
+            );
+        else
+            setActiveIcon(
+                <span className="material-symbols-outlined">
+                    arrow_back_ios
+                </span>
+            );
+    }, [isActive]);
+
+    switch (windowWidth) {
+        case 425:
+            return (
+                <div className="study_mobile_nav">
+                    <div className="bar">
+                        <h3 className="important_text">Project</h3>
+                        <div className="study_burger" onClick={()=>{
+                            //toggle the states
+                            setActive((pre)=>{
+                                return !pre;
+                            });
+                        }}>
+                            {activeIcon}
+                        </div>
+                    </div>
+                    <div className="separator"></div>
+                </div>
+            );
+
+        default:
+            return (
+                <></>
+            );
+    }
+}
+
 function Case_Studies() {
 
     const studies_meta = [
@@ -125,6 +178,9 @@ function Case_Studies() {
 
     return (
         <div className="case_studies_container">
+ 
+            <MobileNav projects={projectNames} meta_gen={getProjectHeadings} />
+
             <div className="study_list">
                 <ProjectContainer proj={projectNames[0]} content={[
                     [
