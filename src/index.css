@@ -41,7 +41,7 @@ h1 {
     font-size: var(--large-heading);
 }
 
-p {
+p, a {
     margin: 0;
     padding: 0;
     font-family: "Lato", sans-serif;
