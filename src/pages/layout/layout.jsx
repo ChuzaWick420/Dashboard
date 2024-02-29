@@ -72,9 +72,11 @@ function Layout() {
 
     useEffect(()=>{
         resizer();
-        window.addEventListener("resize", ()=>{
-            resizer();
-        });
+        window.addEventListener("resize", resizer);
+
+        return ()=>{
+            window.removeEventListener("resize", resizer);
+        };
     }, []);
 
     const contents = ["Overview", "Experience", "Projects", "Case Studies"];

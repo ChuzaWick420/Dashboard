@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./case_studies.css";
+import { windowSize } from "../layout/layout";
 
 function ProjectContainer (props) {
 
@@ -38,6 +39,8 @@ function StudyNav (props) {
     
     const[projects, setProjects] = useState([]);
 
+    let windowWidth = useContext(windowSize);
+
     useEffect(()=>{
         let projects_list = [];
 
@@ -74,13 +77,23 @@ function StudyNav (props) {
                 {sections}
             </div>
         );
+
     }
-    
-    return (
-        <div className="study_nav">
-            {projects}
-        </div>
-    );
+ 
+    switch(windowWidth) {
+        case 425:
+            return (
+                <></>
+            );
+
+        default:
+            return (
+                <div className="study_nav">
+                    {projects}
+                </div>
+            );
+    }   
+
 }
 
 function Case_Studies() {
