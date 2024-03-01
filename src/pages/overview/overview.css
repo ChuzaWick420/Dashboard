@@ -1,10 +1,13 @@
 .overview_container {
 
+    overflow-y: scroll;
+    overflow-x: hidden;
+
     .container {
         margin-block: var(--major-content-spacing);
         padding-inline: var(--internal-padding);
-        display: flex;
-        flex-direction: column;
+        /* display: flex;
+        flex-direction: column; */
 
         .head {
             display: grid;
@@ -43,6 +46,51 @@
                     
                     img {
                         width: var(--bullet-size);
+                        aspect-ratio: 1;
+                    }
+                }
+            }
+        }
+
+        .timeline_card_container {
+
+            div:nth-child(2) {
+                height: calc(2 * var(--internal-padding) + var(--img-size-mid));
+                background-color: var(--secondary);
+                border-radius: var(--border);
+                display: flex;
+                flex-direction: row;
+
+                q {
+                    padding: var(--internal-padding);
+                    flex-grow: 1;
+                }
+
+                q:before {
+                    color: var(--primary);
+                    vertical-align: super;
+                    font-size: var(--large-heading);
+                    font-weight: bold;
+                    font-family: "Lato", sans-serif;
+                }
+
+                q:after {
+                    display: none;
+                }
+
+                .separator {
+                    width: var(--bar-size);
+                    background-color: var(--text-color);
+                }
+
+                .img_container {
+
+                    margin: var(--internal-padding);
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                    img {
+                        width: var(--img-size-mid);
                         aspect-ratio: 1;
                     }
                 }

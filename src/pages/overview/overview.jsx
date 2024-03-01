@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./overview.css";
 
@@ -13,6 +13,57 @@ function Overview() {
                 </a>
             </div>
         );
+    };
+
+    const TimeLine = (props) => {
+
+        const [embed, setEmbed] = useState(<></>);
+
+        const ClientCard = (props)=>{
+            return (
+                <div className="client_timeline_card">
+                    <q><span>{props.text}</span></q>
+                    <div className="separator"></div>
+                    <div className="img_container">
+                        <img src={props.img}></img>
+                    </div>
+                </div>
+            );
+        };
+
+        const TimeLineSection = (props)=>{
+            return (
+                <div className="timeline">
+                    <div className="timeline_history">
+                        <div className="bullet"></div>
+                        <div className="timeline_extension"></div>
+                        <p>{props.date}</p>
+                    </div>
+                    <div className="timeline_card_container">
+                        <div className="timeline_progress"></div>
+                        {embed}
+                    </div>
+                </div>
+            );
+        }
+
+        useEffect(()=>{
+            
+            switch(props.type) {
+                case "client":
+                    setEmbed(
+                        <ClientCard text={props.content} img={props.img} />
+                    );
+            }
+
+        }, []);
+
+        switch (props.type) {
+            case "client":
+                return (
+                    <TimeLineSection date={props.time} />
+                );
+        }
     };
 
     return (
@@ -37,6 +88,13 @@ function Overview() {
                     <Contact imgSrc="/placeholder.png" displayText="discord.com/me" link="https://discord.com/" />
                     <Contact imgSrc="/placeholder.png" displayText="facebook.com/me" link="https://www.facebook.com/" />
                     <Contact imgSrc="/placeholder.png" displayText="instagram.com/me" link="https://www.instagram.com/" />
+                </div>
+            </div>
+            <div className="container">
+                <h1>Clients</h1>
+                <div className="timeline_container">
+                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
+                    <div className="bullet"></div>
                 </div>
             </div>
         </div>
