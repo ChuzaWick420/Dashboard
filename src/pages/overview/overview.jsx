@@ -31,6 +31,16 @@ function Overview() {
             );
         };
 
+        const AchievementCard = (props) => {
+            return (
+                <div className="achievement_timeline_card">
+                    <p>
+                        {props.text}
+                    </p>
+                </div>
+            );
+        }
+
         const TimeLineSection = (props)=>{
             return (
                 <div className="timeline">
@@ -54,12 +64,24 @@ function Overview() {
                     setEmbed(
                         <ClientCard text={props.content} img={props.img} />
                     );
+                    break;
+
+                case "achievement":
+                    setEmbed(
+                        <AchievementCard text={props.content} />
+                    );
+                    break;
             }
 
         }, []);
 
         switch (props.type) {
             case "client":
+                return (
+                    <TimeLineSection date={props.time} />
+                );
+
+            case "achievement":
                 return (
                     <TimeLineSection date={props.time} />
                 );
@@ -94,6 +116,17 @@ function Overview() {
                 <h1>Clients</h1>
                 <div className="timeline_container">
                     <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
+                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
+                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
+                    <div className="bullet"></div>
+                </div>
+            </div>
+            <div className="container">
+                <h1>Achievements</h1>
+                <div className="timeline_container">
+                    <TimeLine type="achievement" content="Hello World" time="2020" />
+                    <TimeLine type="achievement" content="Hello World" time="2020" />
+                    <TimeLine type="achievement" content="Hello World" time="2020" />
                     <div className="bullet"></div>
                 </div>
             </div>
