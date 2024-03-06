@@ -75,6 +75,7 @@
                     }
 
                     q:before {
+                        content: '"'; 
                         color: var(--primary);
                         vertical-align: super;
                         font-size: var(--large-heading);
@@ -105,5 +106,41 @@
                 }
             }
         }
+
+        .desktop_timeline_container {
+
+            .desktop_timeline {
+                display: grid;
+                grid-template-columns: 1fr var(--bullet-size) 1fr;
+
+                .timeline_bone {
+                    display: grid;
+                    grid-template-rows: var(--bullet-size) auto;
+                }
+
+                .timeline_date {
+                    align-items: center;
+                }
+
+            }
+            
+            .desktop_timeline:nth-child(even) {
+
+                .timeline_date {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            
+            .desktop_timeline:nth-child(odd) {
+
+                .timeline_date {
+                    display: flex;
+                    flex-direction: row-reverse;
+                }
+            }
+
+        }
+
     }
 }
