@@ -109,18 +109,39 @@
 
         .desktop_timeline_container {
 
+            .bullet {
+                margin-inline: auto;
+            }
+
             .desktop_timeline {
                 display: grid;
                 grid-template-columns: 1fr var(--bullet-size) 1fr;
+
+                .desktop_timeline_history {
+
+                    display: grid;
+                    grid-template-rows: var(--bullet-size) auto;
+
+                    .timeline_date {
+                        align-items: center;
+
+                        p {
+                            font-size: var(--small-text);
+                        }
+                    }
+
+                    .edu_timeline_card {
+                        background-color: var(--secondary);
+                        border-radius: var(--border);
+                        padding: var(--internal-padding);
+                    }
+                }
 
                 .timeline_bone {
                     display: grid;
                     grid-template-rows: var(--bullet-size) auto;
                 }
 
-                .timeline_date {
-                    align-items: center;
-                }
 
             }
             

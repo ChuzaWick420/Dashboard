@@ -91,6 +91,7 @@ function Overview() {
         return (
             <div className="desktop_timeline_container">
                 {timelines}
+                <div className="bullet"></div>
             </div>
         );
     };
