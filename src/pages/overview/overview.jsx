@@ -102,14 +102,28 @@ function Overview() {
 
     let windowWidth = useContext(windowSize);
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //     if (windowWidth != 1024) {
-    //         setEduSkeleton(
-    //         );
-    //     }
+        if (windowWidth >= 1024) {
+            setEduSkeleton(
+                <EduDesktop meta_data={education_obj} />
+            );
+        }
 
-    // }, [windowWidth]);
+        else {
+            setEduSkeleton(
+                <div className="timeline_container">
+                    {education_obj.map((obj, index)=>{
+                        return (
+                            <TimeLine key={index} type="education" content={obj} time={obj["year"]} />
+                        );
+                    })}
+                    <div className="bullet"></div>
+                </div>
+            );
+        }
+
+    }, [windowWidth]);
 
     const Contact = (props) => {
         return (
@@ -148,6 +162,16 @@ function Overview() {
             );
         }
 
+        const EducationCard = (props)=>{
+            return (
+                <div className="edu_timeline_card">
+                    <h4 className="important_text">{props.place}</h4>
+                    <p>{props.level}</p>
+                    <p><span className="important_text">{props.score}%</span> Score</p>
+                </div>
+            );        
+        };
+
         const TimeLineSection = (props)=>{
             return (
                 <div className="timeline">
@@ -178,21 +202,17 @@ function Overview() {
                         <AchievementCard text={props.content} />
                     );
                     break;
+                case "education":
+                    setEmbed(
+                        <EducationCard place={props.content["name"]} level={props.content["level"]} score={props.content["score"]} />
+                    );
             }
 
         }, []);
 
-        switch (props.type) {
-            case "client":
-                return (
-                    <TimeLineSection date={props.time} />
-                );
-
-            case "achievement":
-                return (
-                    <TimeLineSection date={props.time} />
-                );
-        }
+        return (
+            <TimeLineSection date={props.time} />
+        );
     };
 
     return (

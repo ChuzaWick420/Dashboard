@@ -58,7 +58,7 @@
 
             .timeline_card_container {
                 
-                div:nth-child(2) {
+                > div:nth-child(2) {
                     height: calc(2 * var(--internal-padding) + var(--img-size-mid));
                     background-color: var(--secondary);
                     border-radius: var(--border);
@@ -127,6 +127,7 @@
 
                         p {
                             font-size: var(--small-text);
+                            padding-inline: var(--internal-padding);
                         }
                     }
 
@@ -163,5 +164,63 @@
 
         }
 
+    }
+}
+
+@media (max-width: 768px) {
+    .container:nth-child(4) {
+        .timeline_container {
+            max-height: 100%;
+            
+            div:nth-child(2).edu_timeline_card {
+                display: flex;
+                flex-direction: column;
+                padding: var(--internal-padding);
+                justify-content: space-evenly;
+                align-items: center;
+                
+                p, * {
+                    padding: 0;
+                }
+
+            }
+        }
+    }
+}
+
+@media (max-width: 425px) {
+    .container:nth-child(1) {
+        .head {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .img_container {
+                margin: var(--internal-padding);
+            }
+        }
+    }
+
+    .container:nth-child(2), .container:nth-child(3) {
+        .timeline_container {
+
+            max-height: calc(2 * (2 * var(--internal-padding) + 50px));
+
+            div:nth-child(2).client_timeline_card {
+                height: calc(2 * var(--internal-padding) + 50px);
+                
+                .img_container {
+
+                    img {
+                        width: 50px;
+                        aspect-ratio: 1;
+                    }
+                }
+            }
+
+            div:nth-child(2).achievement_timeline_card{
+                height: calc(2 * var(--internal-padding) + 50px);
+            }
+        }
     }
 }
