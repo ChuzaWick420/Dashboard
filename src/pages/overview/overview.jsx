@@ -261,6 +261,20 @@ function Overview() {
                 <h1 className="important_text">Education</h1>
                 {eduSkeleton}
             </div>
+            <div className="container">
+                <h1 className="important_text">Working on</h1>
+                
+                <div className="project_card_preview">
+                    <div className="project_header">
+                        <div className="project_details"></div>
+                        <div className="project_img"></div>
+                    </div>
+                    <div className="project_preview">
+                        <div className="project_details"></div>
+                        <button className="read_more_btn">Read More</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

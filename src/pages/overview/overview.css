@@ -204,22 +204,22 @@
     .container:nth-child(2), .container:nth-child(3) {
         .timeline_container {
 
-            max-height: calc(2 * (2 * var(--internal-padding) + 50px));
+            max-height: calc(2 * (2 * var(--internal-padding) + var(--img-size-small)));
 
             div:nth-child(2).client_timeline_card {
-                height: calc(2 * var(--internal-padding) + 50px);
+                height: calc(2 * var(--internal-padding) + var(--img-size-small));
                 
                 .img_container {
 
                     img {
-                        width: 50px;
+                        width: var(--img-size-small);
                         aspect-ratio: 1;
                     }
                 }
             }
 
             div:nth-child(2).achievement_timeline_card{
-                height: calc(2 * var(--internal-padding) + 50px);
+                height: calc(2 * var(--internal-padding) + var(--img-size-small));
             }
         }
     }

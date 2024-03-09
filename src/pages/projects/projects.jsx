@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import "./projects.css";
 import { windowSize } from "../layout/layout";
+import data from "../../json/projects_data.json";
 
 let activeProjectContext = createContext();
 
@@ -209,27 +210,7 @@ function Projects() {
         </span>
     );
     
-    let projects_meta = [
-        {
-            "Web": [
-                {"id": "proj_1", "name": "Blogify"},
-                {"id": "proj_2", "name": "Articles"},
-            ]
-        },
-        {
-            "Games": [
-                {"id": "proj_3", "name": "Flappy_Bird"},
-                {"id": "proj_4", "name": "2D_Platformer"},
-                {"id": "proj_5", "name": "Mario_Clone"}
-            ] 
-        }
-    ];
-
-    let projects = projects_meta.flatMap((obj)=>{
-        return (
-            obj[Object.keys(obj)[0]]
-        );
-    });
+    let projects_meta = data["projects"];
 
     let categories = projects_meta.map((obj)=>{
         return Object.keys(obj)[0];
@@ -280,82 +261,20 @@ function Projects() {
             <MobileNavPopup popupStatus={activeClass} sections={categories} meta_data={projects_meta} />
 
             <div className="projects_list">
-                <div className="category_container">
-                    <h1 className="important_text">{categories[0]}</h1>
-                    <ProjectCard proj_id={projects[0].id} name={projects[0].name} customer="@customer_1" date="1-1-2024" img_url="" content={[
-                        [
-                            "Heading_1",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_2",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_3",
-                            "Paragraph"
-                        ]
-                    ]} />
-                    <ProjectCard proj_id={projects[1].id} name={projects[1].name} customer="@customer_2" date="4-1-2024" img_url="" content={[
-                        [
-                            "Heading_1",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_2",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_3",
-                            "Paragraph"
-                        ]
-                    ]} />
-                </div>
-                <div className="category_container">
-                    <h1 className="important_text">{categories[1]}</h1>
-                    <ProjectCard proj_id={projects[2].id} name={projects[2].name} customer="@customer_3" date="5-2-2024" img_url="" content={[
-                        [
-                            "Heading_1",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_2",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_3",
-                            "Paragraph"
-                        ]
-                    ]} />
-                    <ProjectCard proj_id={projects[3].id} name={projects[3].name} customer="@customer_4" date="5-3-2024" img_url="" content={[
-                        [
-                            "Heading_1",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_2",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_3",
-                            "Paragraph"
-                        ]
-                    ]} />
-                    <ProjectCard proj_id={projects[4].id} name={projects[4].name} customer="@customer_5" date="6-4-2024" img_url="" content={[
-                        [
-                            "Heading_1",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_2",
-                            "Paragraph"
-                        ],
-                        [
-                            "Heading_3",
-                            "Paragraph"
-                        ]
-                    ]} />
-                </div>
+
+                {categories.map((cat, cat_index)=>{
+                    return (
+                        <div key={cat_index} className="category_container">
+                            <h1 className="important_text">{cat}</h1>
+                            {projects_meta[cat_index][cat].map((proj, proj_index)=>{
+                                return (
+                                    <ProjectCard key={proj_index} proj_id={proj.id} name={proj.name} customer={proj.customer} date={proj.date} img_url={proj.img_url} content={proj.content} />
+                                );
+                            })}
+                        </div>
+                    );
+                })}
+
             </div>
 
             <Navigation sections={categories} meta_data={projects_meta} />

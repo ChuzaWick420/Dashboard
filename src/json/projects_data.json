@@ -1,0 +1,67 @@
+{
+    "projects": [
+        {
+            "Web": [
+                {
+                    "id": "proj_1", 
+                    "name": "Blogify",
+                    "customer": "customer_1",
+                    "date": "2019-01-01",
+                    "img_url": "https://via.placeholder.com/150",
+                    "content": [
+                        ["heading_1", "paragraph_1"],
+                        ["heading_2", "paragraph_2"]
+                    ]
+                },
+                {
+                    "id": "proj_2", 
+                    "name": "Articles",
+                    "customer": "customer_2",
+                    "date": "2019-01-01",
+                    "img_url": "https://via.placeholder.com/150",
+                    "content": [
+                        ["heading_1", "paragraph_1"],
+                        ["heading_2", "paragraph_2"]
+                    ]
+                }
+            ]
+        },
+        {
+            "Games": [
+                {
+                    "id": "proj_3", 
+                    "name": "Flappy_Bird",
+                    "customer": "customer_3",
+                    "date": "2019-01-01",
+                    "img_url": "https://via.placeholder.com/150",
+                    "content": [
+                        ["heading_1", "paragraph_1"],
+                        ["heading_2", "paragraph_2"]
+                    ]
+                },
+                {
+                    "id": "proj_4", 
+                    "name": "2D_Platformer",
+                    "customer": "customer_4",
+                    "date": "2019-01-01",
+                    "img_url": "https://via.placeholder.com/150",
+                    "content": [
+                        ["heading_1", "paragraph_1"],
+                        ["heading_2", "paragraph_2"]
+                    ]
+                },
+                {
+                    "id": "proj_5", 
+                    "name": "Mario_Clone",
+                    "customer": "customer_5",
+                    "date": "2019-01-01",
+                    "img_url": "https://via.placeholder.com/150",
+                    "content": [
+                        ["heading_1", "paragraph_1"],
+                        ["heading_2", "paragraph_2"]
+                    ]
+                }
+            ] 
+        }
+    ]
+}
