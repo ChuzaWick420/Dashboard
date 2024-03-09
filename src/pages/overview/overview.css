@@ -164,6 +164,38 @@
 
         }
 
+        .project_card_preview {
+            height: calc(100vh - (2 * var(--major-content-spacing) + 4 * var(--internal-padding) + var(--large-heading)));
+            margin-block: var(--internal-padding);
+            background-color: var(--secondary);
+            border-radius: var(--border);
+            padding: var(--internal-padding);
+
+            .project_preview {
+                display: grid;
+                grid-template-columns: auto auto;
+                
+                .project_content_section {
+                    padding-block: var(--internal-padding);
+
+                    p {
+                        display: -webkit-box;
+                        -webkit-line-clamp: 8;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    }
+                }
+                
+                .read_more_btn {
+                    margin: var(--internal-padding);
+                    background-color: var(--primary);
+                    border: none;
+                    border-radius: var(--border);
+                    padding: var(--internal-padding);
+                    color: white;
+                }
+            }
+        }
     }
 }
 
@@ -220,6 +252,18 @@
 
             div:nth-child(2).achievement_timeline_card{
                 height: calc(2 * var(--internal-padding) + var(--img-size-small));
+            }
+        }
+    }
+
+    .container:nth-child(5) {
+        .project_card_preview {
+            .project_preview {
+                .project_content_section {
+                    p {
+                        -webkit-line-clamp: 2;
+                    }
+                }
             }
         }
     }

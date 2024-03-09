@@ -1,9 +1,54 @@
 import React, { useContext, useEffect, useState } from "react";
 import { windowSize } from "../layout/layout";
 
+import data from "../../json/projects_data.json";
+
 import "./overview.css";
 
+const ActiveProjectID = "proj_4";
+
 function Overview() {
+
+    const [currentProjectCard, setCurrentProjectCard] = useState(<></>);
+
+    useEffect(()=>{
+
+        //go through each category
+        for (let category of data["projects"]) {
+            for (let project of category[Object.keys(category)[0]]) {
+                if (project.id == ActiveProjectID) {
+                    setCurrentProjectCard(
+                        <div className="project_card_preview">
+                            <div className="project_header">
+                                <div className="project_details">
+                                    <h3 className="important_text">{project.name}</h3>
+                                    <h4>Customer: {project.customer}</h4>
+                                    <h4>Started at: {project.date}</h4>
+                                </div>
+                                <div className="project_img">
+                                    <img src={project.img_url} />
+                                </div>
+                            </div>
+                            <div className="project_preview">
+                                <div className="project_content_section">
+                                    <h4>{project.content[0][0]}</h4>
+                                    <p>{project.content[0][1]}</p>
+                                </div>
+                                <div>
+                                    <button className="read_more_btn">
+                                        <a target="_self" href={`/projects#${project.id}`}>
+                                            Read More
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                }
+            }
+        }
+
+    }, []);
 
     const education_obj = [
         {
@@ -263,17 +308,7 @@ function Overview() {
             </div>
             <div className="container">
                 <h1 className="important_text">Working on</h1>
-                
-                <div className="project_card_preview">
-                    <div className="project_header">
-                        <div className="project_details"></div>
-                        <div className="project_img"></div>
-                    </div>
-                    <div className="project_preview">
-                        <div className="project_details"></div>
-                        <button className="read_more_btn">Read More</button>
-                    </div>
-                </div>
+                {currentProjectCard}
             </div>
         </div>
     );
