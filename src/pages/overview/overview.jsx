@@ -4,6 +4,7 @@ import { windowSize } from "../layout/layout";
 import data from "../../json/projects_data.json";
 
 import "./overview.css";
+import { HashLink } from "react-router-hash-link";
 
 const ActiveProjectID = "proj_4";
 
@@ -35,11 +36,11 @@ function Overview() {
                                     <p>{project.content[0][1]}</p>
                                 </div>
                                 <div>
-                                    <button className="read_more_btn">
-                                        <a target="_self" href={`/projects#${project.id}`}>
+                                    <HashLink to={`/projects#${project.id}`}>
+                                        <button className="read_more_btn">
                                             Read More
-                                        </a>
-                                    </button>
+                                        </button>
+                                    </HashLink>
                                 </div>
                             </div>
                         </div>

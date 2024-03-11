@@ -186,13 +186,21 @@
                     }
                 }
                 
-                .read_more_btn {
-                    margin: var(--internal-padding);
-                    background-color: var(--primary);
-                    border: none;
-                    border-radius: var(--border);
-                    padding: var(--internal-padding);
-                    color: white;
+                a {
+                    text-decoration: none;
+                    
+                    .read_more_btn {
+                        color: white;
+                        margin: var(--internal-padding);
+                        background-color: var(--primary);
+                        border: none;
+                        border-radius: var(--border);
+                        padding: var(--internal-padding);
+                    }
+                    
+                    .read_more_btn:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }

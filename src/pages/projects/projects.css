@@ -54,6 +54,7 @@
 
 .project_card .projects_content_section {
     padding-block: calc(var(--internal-padding) / 2);
+    padding-right: var(--internal-padding);
 }
 
 .nav_table {
