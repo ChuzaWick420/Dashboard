@@ -41,12 +41,17 @@
     margin-top: calc(var(--major-content-spacing) + var(--large-heading) + var(--internal-padding) * 3 / 2);
     margin-right: var(--internal-padding);
     
-    .study_project * {
+    .study_project p {
         padding-inline: var(--internal-padding);
         padding-block: calc(var(--internal-padding) / 2);
     }
 
-    .study_project *:hover {
+    .study_project a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .study_project p:hover {
         background-color: var(--secondary);
     }
 

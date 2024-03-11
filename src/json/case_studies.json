@@ -1,0 +1,64 @@
+{
+    "studies_meta": [
+        {
+            "id": "study_1",
+            "name": "Study 1",
+            "sections": [
+                {   
+                    "id": "section_1",
+                    "heading": "Heading_1",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                },
+                { 
+                    "id": "section_2",
+                    "heading": "Heading_2",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                },
+                { 
+                    "id": "section_3",
+                    "heading": "Heading_3",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "study_2",
+            "name": "Study 2",
+            "sections": [
+                {   
+                    "id": "section_4",
+                    "heading": "Heading_1",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                },
+                { 
+                    "id": "section_5",
+                    "heading": "Heading_2",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                },
+                { 
+                    "id": "section_6",
+                    "heading": "Heading_3",
+                    "paragraphs": [
+                        "Paragraph_1",
+                        "Paragraph_2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
