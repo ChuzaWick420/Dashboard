@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { windowSize } from "../layout/layout";
 
 import data from "../../json/projects_data.json";
+import contacts from "../../json/contacts.json";
 
 import "./overview.css";
 import { HashLink } from "react-router-hash-link";
@@ -266,23 +267,18 @@ function Overview() {
             <div className="container">
                 <div className="head">
                     <h1>
-                        Hello, I am person and I do
-                        full stack with my lil fingers. I
-                        also make cool games though.
-                        Ignore the fact that I suck at
-                        theme.
+                        Hello, I am Zaid and I am a Web Developer. I also like to tinger around with technologies and enjoy Mathematics.
                     </h1>
                     <div className="img_container">
                         <img src="/Artorias.png" />
                     </div>
                 </div>
                 <div className="contacts">
-                    <Contact imgSrc="/placeholder.png" displayText="youtube.com/me" link="https://www.youtube.com/" />
-                    <Contact imgSrc="/placeholder.png" displayText="github.com/me" link="https://github.com/ChuzaWick420" />
-                    <Contact imgSrc="/placeholder.png" displayText="linkedin.com/me" link="https://www.linkedin.com/" />
-                    <Contact imgSrc="/placeholder.png" displayText="discord.com/me" link="https://discord.com/" />
-                    <Contact imgSrc="/placeholder.png" displayText="facebook.com/me" link="https://www.facebook.com/" />
-                    <Contact imgSrc="/placeholder.png" displayText="instagram.com/me" link="https://www.instagram.com/" />
+                    {contacts["contacts"].map((contact, index)=>{
+                        return (
+                            <Contact key={index} imgSrc={contact.img} displayText={contact.name} link={contact.img} />
+                        );
+                    })}
                 </div>
             </div>
             <div className="container">

@@ -19,6 +19,8 @@
 
             .img_container {
                 border-radius: 50%;
+                display: grid;
+                align-items: center;
                 overflow: hidden;
 
                 img {
@@ -34,6 +36,7 @@
             flex-wrap: wrap;
             justify-content: space-evenly;
             gap: 40px;
+            padding-top: var(--major-content-spacing);
 
             .contact_container {
                 

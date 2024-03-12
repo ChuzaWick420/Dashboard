@@ -47,7 +47,7 @@
     }
 
     .study_project a {
-        color: white;
+        color: var(--text-color);
         text-decoration: none;
     }
 
