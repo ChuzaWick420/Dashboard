@@ -72,12 +72,12 @@
     .study_mobile_nav {
         display: grid;
         grid-template-rows: auto var(--bar-size);
-        display: fixed;
+        background-color: var(--background-color);
 
         .bar {
             --margin: calc(var(--vertical-separator) /(4* 2) - var(--bullet-size));
             --buttons-width: calc(var(--vertical-separator) / 4 - 2* var(--margin));
-            height: calc(2* var(--margin) + var(--buttons-width));
+            height: calc(2 * var(--margin) + var(--buttons-width));
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -127,9 +127,9 @@
         margin: 0;
         border: none;
         border-radius: 0;
-        height: 100%;
         --margin: calc(var(--vertical-separator) /(4* 2) - var(--bullet-size));
         --buttons-width: calc(var(--vertical-separator) / 4 - 2* var(--margin));
+        height: calc(100vh - 2 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size))); 
         top: calc(1 * (2 * var(--margin) + var(--buttons-width) + var(--bar-size)));
 
         transform: translateX(calc(100% * 100 / 70));
