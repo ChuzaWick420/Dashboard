@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 import "./case_studies.css";
 import { windowSize } from "../layout/layout";
 
 import data from "../../json/case_studies.json";
+
+const activeSectionIDContext = createContext();
 
 function ProjectContainer (props) {
 
@@ -107,14 +109,37 @@ const Project = (props) => {
         setSections(
             props.sections.map((section, index)=>{
                 return (
-                    <a href={`#${section.id}`} key={index} >
-                        <p key={index} className="study_project_section">{section.heading}</p>
-                    </a>
+                    <NavLink key={index} id={section.id} heading={section.heading} />
                 );
             })
         );
 
     }, []);
+
+    const NavLink = (props)=>{
+        let SectionContext = useContext(activeSectionIDContext);
+        const [activeClass, setActiveClass] = useState("");
+
+        useEffect(()=>{
+            if (props.id == SectionContext.state)
+                setActiveClass("important_text");
+
+            return (()=>{
+                setActiveClass("");
+            });
+
+        }, [SectionContext.state]);
+
+        return (
+            <div onClick={()=>{
+                SectionContext.handler(props.id);
+            }}>
+                <a href={`#${props.id}`}>
+                    <p className={`study_project_section ${activeClass}`}>{props.heading}</p>
+                </a>
+            </div>
+        );
+    };
 
     return (
         <div className="study_project">
@@ -135,6 +160,8 @@ function Case_Studies() {
 
         const[projects, setProjects] = useState([]);
 
+        const [activeID, setActiveID] = useState(null);
+
         useEffect(()=>{
 
             setProjects(
@@ -148,9 +175,14 @@ function Case_Studies() {
         }, []);
     
         return (
-            <div className={props.active_state}>
-                {projects}
-            </div>
+            <activeSectionIDContext.Provider value={{
+                "state": activeID,
+                "handler": setActiveID
+            }}>
+                <div className={props.active_state}>
+                    {projects}
+                </div>
+            </activeSectionIDContext.Provider>
         );
 
     }
