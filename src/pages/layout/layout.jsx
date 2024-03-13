@@ -146,6 +146,7 @@ function Layout() {
         switch (targetWidth) {
        
             case breakPoints[0]:
+            case breakPoints[1]:
                 return (
                     <ActiveButton.Provider value={isActiveID}>
                         <div className={mobileNavActive}>
