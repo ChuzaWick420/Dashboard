@@ -91,6 +91,7 @@ function Navigation(props) {
 
     switch (windowWidth) {
         case 425:
+        case 768:
             return (
                 <></>
             );
@@ -117,6 +118,7 @@ function MobileNav(props) {
     
     switch (windowWidth) {
 
+        case 768:
         case 425:
             return (
                     <div className="projects_mobile_nav">
@@ -236,6 +238,7 @@ function Projects() {
         }, []);
 
         switch (windowWidth) {
+            case 768:
             case 425:
                 return (
                     <activeProjectContext.Provider value={{
