@@ -1,0 +1,19 @@
+{
+    "clients": [
+        {
+            "comments": "This is a comment",
+            "img": "/placeholder.png",
+            "time": 2024
+        },
+        {
+            "comments": "This is a comment",
+            "img": "/placeholder.png",
+            "time": 2024
+        },
+        {
+            "comments": "This is a comment",
+            "img": "/placeholder.png",
+            "time": 2024
+        }
+    ]
+}

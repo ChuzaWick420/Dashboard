@@ -3,6 +3,8 @@ import { windowSize } from "../layout/layout";
 
 import data from "../../json/projects_data.json";
 import contacts from "../../json/contacts.json";
+import clients from "../../json/clients.json";
+import achievements from "../../json/achievements.json";
 
 import "./overview.css";
 import { HashLink } from "react-router-hash-link";
@@ -284,18 +286,22 @@ function Overview() {
             <div className="container">
                 <h1 className="important_text">Clients</h1>
                 <div className="timeline_container">
-                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
-                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
-                    <TimeLine type="client" content={"text"} img={"/placeholder.png"} time="2020" />
+                    {clients["clients"].map((client)=>{
+                        return (
+                            <TimeLine type="client" content={client.comments} img={client.img} time={client.time} />
+                        );
+                    })}
                     <div className="bullet"></div>
                 </div>
             </div>
             <div className="container">
                 <h1 className="important_text">Achievements</h1>
                 <div className="timeline_container">
-                    <TimeLine type="achievement" content="Hello World" time="2020" />
-                    <TimeLine type="achievement" content="Hello World" time="2020" />
-                    <TimeLine type="achievement" content="Hello World" time="2020" />
+                    {achievements["achievements"].map((achievement)=>{
+                        return (
+                            <TimeLine type="achievement" content={achievement.content} time={achievement.date} />
+                        );
+                    })}
                     <div className="bullet"></div>
                 </div>
             </div>
