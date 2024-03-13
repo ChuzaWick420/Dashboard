@@ -75,6 +75,7 @@ function MobileNav (props) {
     }, [isActive]);
 
     switch (windowWidth) {
+        case 768:
         case 425:
             return (
                 <div className="study_mobile_nav">
