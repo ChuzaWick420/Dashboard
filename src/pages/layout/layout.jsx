@@ -91,6 +91,10 @@ function Layout() {
         
         const [isActiveID, setActiveID] = useState(paths.indexOf(current_loc));
 
+        useEffect(()=>{
+            setActiveID(paths.indexOf(current_loc));
+        }, [current_loc]);
+
         for (let i = 0; i < 4; i++) {
             Option.push(
                 <Options key={i} content={contents[i]} path={paths[i]} index={i} handler={setActiveID}/>
