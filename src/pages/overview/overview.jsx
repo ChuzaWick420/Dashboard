@@ -286,9 +286,9 @@ function Overview() {
             <div className="container">
                 <h1 className="important_text">Clients</h1>
                 <div className="timeline_container">
-                    {clients["clients"].map((client)=>{
+                    {clients["clients"].map((client, index)=>{
                         return (
-                            <TimeLine type="client" content={client.comments} img={client.img} time={client.time} />
+                            <TimeLine key={index} type="client" content={client.comments} img={client.img} time={client.time} />
                         );
                     })}
                     <div className="bullet"></div>
