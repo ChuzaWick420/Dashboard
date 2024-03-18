@@ -297,9 +297,9 @@ function Overview() {
             <div className="container">
                 <h1 className="important_text">Achievements</h1>
                 <div className="timeline_container">
-                    {achievements["achievements"].map((achievement)=>{
+                    {achievements["achievements"].map((achievement, index)=>{
                         return (
-                            <TimeLine type="achievement" content={achievement.content} time={achievement.date} />
+                            <TimeLine key={index} type="achievement" content={achievement.content} time={achievement.date} />
                         );
                     })}
                     <div className="bullet"></div>
